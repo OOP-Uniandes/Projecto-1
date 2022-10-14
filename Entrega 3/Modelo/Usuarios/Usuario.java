@@ -2,19 +2,14 @@ package Modelo.Usuarios;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import org.w3c.dom.UserDataHandler;
-
 public class Usuario {
 
-	private int id;
 	public String nombre;
 	public String contraseña;
 	public String rol;
@@ -58,7 +53,6 @@ public class Usuario {
 	}
 
 	public static Usuario iniciarSesion(String nombre, String contraseña) throws IOException {
-		boolean login = false;
 		String record = null;
 		FileReader in = null;
 		boolean existe = false; // para comprobar si cuenta y pass no coindicen con ninguna línea
@@ -70,16 +64,17 @@ public class Usuario {
 			if (word[0].equals(nombre) && word[1].equals(contraseña)) {
 				System.out.println("Has iniciado sesión exitosamente como: " + word[2]);
 				existe = true;
-				login = true;
+				br.close();
 				return new Usuario(nombre, contraseña, word[2]);
 			}
 		}
 
 		if (!existe) {
 			System.out.println("Usuario o contraseña incorrecto.");
-			login = false;
+			br.close();
 			return null;
 		}
+		br.close();
 		return null;
 
 	}

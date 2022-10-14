@@ -9,7 +9,7 @@ public class Equipo {
     private String nombre;
     private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
-    public Equipo(String nombre, int id) {
+    public Equipo(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }

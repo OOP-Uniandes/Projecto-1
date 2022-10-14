@@ -1,12 +1,17 @@
-package Modelo;
+package Modelo.temporada;
 
 import java.util.ArrayList;
+
+import Modelo.Partido;
+import Modelo.Equipos.EquipoReal;
 
 public class Temporada {
     private int id;
     private String fechaInicio;
     private String fechaFinal;
     private ArrayList<Partido> partidos = new ArrayList<Partido>();
+    private ArrayList<Ranking> rankingActual = new ArrayList<Ranking>();
+    private ArrayList<EquipoReal> equipos = new ArrayList<EquipoReal>();
 
     public Temporada(int id, String fechaInicio, String fechaFinal) {
         this.id = id;
@@ -44,6 +49,29 @@ public class Temporada {
 
     public void setPartidos(ArrayList<Partido> partidos) {
         this.partidos = partidos;
+    }
+
+    public ArrayList<Ranking> getRankingActual() {
+        return rankingActual;
+    }
+
+    public void setRankingActual(ArrayList<Ranking> rankingActual) {
+        this.rankingActual = rankingActual;
+    }
+
+    public ArrayList<EquipoReal> getEquipos() {
+        return equipos;
+    }
+
+    public void setEquipos(ArrayList<EquipoReal> equipos) {
+        this.equipos = equipos;
+    }
+
+    @Override
+    public String toString() {
+
+        // TODO: implementar toString
+        return super.toString();
     }
 
 }

@@ -3,17 +3,18 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import Modelo.Equipos.Equipo;
+import Modelo.Equipos.EquipoReal;
+import Modelo.Jugadores.Jugador;
 
 public class Partido {
     private int id;
-    private Equipo equipoLocal;
-    private Equipo equipoVisitante;
+    private EquipoReal equipoLocal;
+    private EquipoReal equipoVisitante;
     private String fecha;
     private String hora;
-    private ArrayList<HashMap> rendimientoJugadores = new ArrayList<HashMap>();
+    private ArrayList<HashMap<Jugador, Integer>> rendimientoJugadores = new ArrayList<HashMap<Jugador, Integer>>();
 
-    public Partido(int id, Equipo equipoLocal, Equipo equipoVisitante, String fecha, String hora) {
+    public Partido(int id, EquipoReal equipoLocal, EquipoReal equipoVisitante, String fecha, String hora) {
         this.id = id;
         this.equipoLocal = equipoLocal;
         this.equipoVisitante = equipoVisitante;
@@ -29,19 +30,19 @@ public class Partido {
         this.id = id;
     }
 
-    public Equipo getEquipoLocal() {
+    public EquipoReal getEquipoLocal() {
         return equipoLocal;
     }
 
-    public void setEquipoLocal(Equipo equipoLocal) {
+    public void setEquipoLocal(EquipoReal equipoLocal) {
         this.equipoLocal = equipoLocal;
     }
 
-    public Equipo getEquipoVisitante() {
+    public EquipoReal getEquipoVisitante() {
         return equipoVisitante;
     }
 
-    public void setEquipoVisitante(Equipo equipoVisitante) {
+    public void setEquipoVisitante(EquipoReal equipoVisitante) {
         this.equipoVisitante = equipoVisitante;
     }
 
@@ -61,11 +62,11 @@ public class Partido {
         this.hora = hora;
     }
 
-    public ArrayList<HashMap> getRendimientoJugadores() {
+    public ArrayList<HashMap<Jugador, Integer>> getRendimientoJugadores() {
         return rendimientoJugadores;
     }
 
-    public void setRendimientoJugadores(ArrayList<HashMap> rendimientoJugadores) {
+    public void setRendimientoJugadores(ArrayList<HashMap<Jugador, Integer>> rendimientoJugadores) {
         this.rendimientoJugadores = rendimientoJugadores;
     }
 

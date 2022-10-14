@@ -12,8 +12,7 @@ public class EquipoFantasia extends Equipo {
     Jugador capitan = null;
 
     public EquipoFantasia(String nombre, int id) {
-        super(nombre, id);
-        // TODO Auto-generated constructor stub
+        super(id, nombre);
     }
 
     public int getPuntajeActual() {

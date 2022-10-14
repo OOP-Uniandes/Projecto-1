@@ -2,23 +2,25 @@ package Vista;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import Modelo.Temporada;
 import Modelo.Usuarios.Administrador;
 import Modelo.Usuarios.Participante;
 import Modelo.Usuarios.Usuario;
+import Modelo.temporada.Temporada;
+import Procesamiento.Archivo;
 
 public class App {
 
 	public static Usuario usuarioActual = null;
 	public static Administrador adminActual = null;
 	public static Participante participanteActual = null;
-	public static ArrayList<Temporada> list = new ArrayList<Temporada>();
+	public static ArrayList<Temporada> temporadas = new ArrayList<Temporada>();
 
 	public static void main(String[] args) throws IOException {
 		{
+			Archivo reader = new Archivo();
+			temporadas = reader.cargarTemporadas("data/datos_iniciales.json");
 			MenuInicioDeSesion();
 		}
 	}
@@ -55,6 +57,7 @@ public class App {
 		} else {
 			System.out.println("Has salido de la aplicación");
 		}
+		sc.close();
 
 	}
 
@@ -66,6 +69,8 @@ public class App {
 		System.out.println("Ingresa tu contraseña");
 		String contrasena = sc.nextLine();
 
+		sc.close();
+
 		Usuario user = Modelo.Usuarios.Usuario.iniciarSesion(usuario, contrasena);
 		if (user == null) {
 			MenuInicioDeSesion();
@@ -76,13 +81,14 @@ public class App {
 	}
 
 	private static void RegistrarUsuario() {
-		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingresa tu nombre de usuario");
 		String usuario = sc.nextLine();
 
 		System.out.println("Ingresa tu contraseña");
 		String contrasena = sc.nextLine();
+
+		sc.close();
 
 		Usuario user = Modelo.Usuarios.Usuario.RegistrarUsuario(usuario, contrasena, "Usuario");
 		if (user != null) {
