@@ -31,21 +31,40 @@ public class App {
 		System.out.println("2. Registrate Gratis");
 		System.out.println("3. Salir");
 		System.out.println("Selecciona una opción para continuar");
+
 		int opcion_seleccionada = sc.nextInt();
 
 		if (opcion_seleccionada == 1) {
 			boolean login = iniciarSesion();
-
+			System.out.println(usuarioActual.rol);
 			if (login == true) {
 				System.out.println("Haz iniciado sesión !");
-				if (usuarioActual.rol == "Usuario") {
+				if (usuarioActual.rol.equals("Usuario")) {
 					// menu usuario
 					participanteActual = new Participante(usuarioActual.nombre, usuarioActual.contraseña,
 							usuarioActual.rol);
-				} else if (usuarioActual.rol == "Administrador") {
+				} else if (usuarioActual.rol.equals("Administrador")) {
 					// menu administrador
 					adminActual = new Administrador(usuarioActual.nombre, usuarioActual.contraseña, usuarioActual.rol);
 					adminActual.mostrarMenuAdministrador();
+
+					int opcion_seleccionada_administrador = Integer.parseInt(sc.nextLine());
+
+					if (opcion_seleccionada_administrador == 1) {
+						int id = sc.nextInt();
+						String fechaInicio = sc.nextLine();
+						String fechaFinal = sc.nextLine();
+
+						temporadas.add(adminActual.crearTemporada(id, fechaInicio, fechaFinal));
+						System.out.println("La temporada ha sido creada con exito!");
+					} else if (opcion_seleccionada_administrador == 2) {
+
+					} else if (opcion_seleccionada_administrador == 3) {
+
+					} else if (opcion_seleccionada_administrador == 4) {
+
+					}
+
 				}
 			} else {
 				MenuInicioDeSesion();
@@ -72,6 +91,7 @@ public class App {
 		sc.close();
 
 		Usuario user = Modelo.Usuarios.Usuario.iniciarSesion(usuario, contrasena);
+
 		if (user == null) {
 			MenuInicioDeSesion();
 			return false;
