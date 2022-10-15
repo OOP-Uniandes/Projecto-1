@@ -1,9 +1,9 @@
 package Modelo.Usuarios;
 
-import Modelo.Partido;
 import Modelo.Equipos.EquipoReal;
 import Modelo.Jugadores.Jugador;
-import Modelo.temporada.Temporada;
+import Modelo.Partidos.Partido;
+import Modelo.Temporadas.Temporada;
 
 public class Administrador extends Usuario {
 

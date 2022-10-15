@@ -1,4 +1,4 @@
-package Modelo.temporada;
+package Modelo.Temporadas;
 
 public class Ranking {
     private int posicion;

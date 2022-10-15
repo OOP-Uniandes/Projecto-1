@@ -1,9 +1,9 @@
-package Modelo.temporada;
+package Modelo.Temporadas;
 
 import java.util.ArrayList;
 
-import Modelo.Partido;
 import Modelo.Equipos.EquipoReal;
+import Modelo.Partidos.Partido;
 
 public class Temporada {
     private int id;

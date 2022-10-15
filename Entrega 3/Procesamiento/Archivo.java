@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import Modelo.Partido;
 import Modelo.Equipos.EquipoReal;
 import Modelo.Jugadores.Jugador;
-import Modelo.temporada.Ranking;
-import Modelo.temporada.Temporada;
+import Modelo.Partidos.Partido;
+import Modelo.Temporadas.Ranking;
+import Modelo.Temporadas.Temporada;
 
 public class Archivo {
 

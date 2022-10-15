@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Modelo.Temporadas.Temporada;
 import Modelo.Usuarios.Administrador;
 import Modelo.Usuarios.Participante;
 import Modelo.Usuarios.Usuario;
-import Modelo.temporada.Temporada;
 import Procesamiento.Archivo;
 
 public class App {
@@ -36,7 +36,7 @@ public class App {
 
 		if (opcion_seleccionada == 1) {
 			boolean login = iniciarSesion();
-			System.out.println(usuarioActual.rol);
+
 			if (login == true) {
 				System.out.println("Haz iniciado sesión !");
 				if (usuarioActual.rol.equals("Usuario")) {
@@ -48,7 +48,7 @@ public class App {
 					adminActual = new Administrador(usuarioActual.nombre, usuarioActual.contraseña, usuarioActual.rol);
 					adminActual.mostrarMenuAdministrador();
 
-					int opcion_seleccionada_administrador = Integer.parseInt(sc.nextLine());
+					int opcion_seleccionada_administrador = sc.nextInt();
 
 					if (opcion_seleccionada_administrador == 1) {
 						int id = sc.nextInt();

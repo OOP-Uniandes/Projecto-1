@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Partidos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
