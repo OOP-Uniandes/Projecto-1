@@ -9,12 +9,14 @@ public class Temporada {
     private int id;
     private String fechaInicio;
     private String fechaFinal;
+    private String nombre;
     private ArrayList<Partido> partidos = new ArrayList<Partido>();
     private ArrayList<Ranking> rankingActual = new ArrayList<Ranking>();
     private ArrayList<EquipoReal> equipos = new ArrayList<EquipoReal>();
 
-    public Temporada(int id, String fechaInicio, String fechaFinal) {
+    public Temporada(int id, String nombre, String fechaInicio, String fechaFinal) {
         this.id = id;
+        this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
     }
@@ -67,11 +69,12 @@ public class Temporada {
         this.equipos = equipos;
     }
 
-    @Override
-    public String toString() {
+    public String getNombre() {
+        return nombre;
+    }
 
-        // TODO: implementar toString
-        return super.toString();
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

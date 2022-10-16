@@ -47,6 +47,7 @@ public class Archivo {
     private Temporada cargaTemporada(JSONObject temporadaActual) {
         int id = temporadaActual.getInt("id");
 
+        String nombre = temporadaActual.getString("nombre");
         String fechaInicio = temporadaActual.getString("fechaInicio");
         String fechaFinal = temporadaActual.getString("fechaFinal");
 
@@ -54,7 +55,7 @@ public class Archivo {
         ArrayList<EquipoReal> equipos = cargarEquipos(temporadaActual);
         ArrayList<Partido> partidos = cargarPartidos(temporadaActual, equipos);
 
-        Temporada temporada = new Temporada(id, fechaInicio, fechaFinal);
+        Temporada temporada = new Temporada(id, nombre, fechaInicio, fechaFinal);
 
         temporada.setRankingActual(rankings);
         temporada.setEquipos(equipos);

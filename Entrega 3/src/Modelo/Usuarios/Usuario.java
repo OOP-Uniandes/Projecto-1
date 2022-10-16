@@ -62,7 +62,7 @@ public class Usuario {
 		while ((record = br.readLine()) != null) {
 			String[] word = record.split(" "); // dividir en palabras delimitadas por espacios
 			if (word[0].equals(nombre) && word[1].equals(contraseña)) {
-				System.out.println("Has iniciado sesión exitosamente como: " + word[2]);
+				System.out.println("\n\n\n\n\n\n" + "Has iniciado sesión exitosamente como: " + word[2]);
 				existe = true;
 				br.close();
 				return new Usuario(nombre, contraseña, word[2]);

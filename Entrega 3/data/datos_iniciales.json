@@ -2,6 +2,7 @@
     "temporadas": [
         {
             "id": 1,
+            "nombre": "Liga 1",
             "fechaInicio": "12-10-2022",
             "fechaFinal": "12-12-2022",
             "ranking": [
@@ -63,25 +64,25 @@
                     "nombre": "REAL MADRID",
                     "jugadores": [
                         {
-                            "id": 6,
+                            "id": 1,
                             "nombre": "Kross",
                             "posicion": "mediocampista",
                             "precio": 1200
                         },
                         {
-                            "id": 7,
+                            "id": 2,
                             "nombre": "Benzema",
                             "posicion": "delantero",
                             "precio": 1200
                         },
                         {
-                            "id": 8,
+                            "id": 3,
                             "nombre": "Carvajal",
                             "posicion": "defensa",
                             "precio": 1200
                         },
                         {
-                            "id": 9,
+                            "id": 4,
                             "nombre": "Iker Casillas",
                             "posicion": "arquero",
                             "precio": 1200

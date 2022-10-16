@@ -1,5 +1,8 @@
 package src.Modelo.Usuarios;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
 import src.Modelo.Partidos.Partido;
@@ -15,12 +18,13 @@ public class Administrador extends Usuario {
         System.out.println("1. Crear temporada");
         System.out.println("2. Crear equipo");
         System.out.println("3. Crear jugador");
-        System.out.println("4. Asignar partido a temporada");
+        System.out.println("4. Crear partido");
+        System.out.println("10. Guardar cambios y salir");
 
     }
 
-    public Temporada crearTemporada(int id, String fechaInicio, String fechaFinal) {
-        Temporada temporada = new Temporada(id, fechaInicio, fechaFinal);
+    public Temporada crearTemporada(int id, String nombre, String fechaInicio, String fechaFinal) {
+        Temporada temporada = new Temporada(id, nombre, fechaInicio, fechaFinal);
         return temporada;
     }
 
@@ -37,6 +41,56 @@ public class Administrador extends Usuario {
     public Partido crearPartido(int id, EquipoReal equipoLocal, EquipoReal equipoVisitante, String fecha, String hora) {
         Partido partido = new Partido(id, equipoLocal, equipoVisitante, fecha, hora);
         return partido;
+    }
+
+    public void mostrarLigas(ArrayList<Temporada> temporadas) {
+        for (int i = 0; i < temporadas.size(); i++) {
+            Temporada temporada = temporadas.get(i);
+            System.out.println(temporada.getId() + ": " + temporada.getNombre());
+        }
+    }
+
+    public String posicionJugadorPrompt() {
+        System.out.println("Posicion: ");
+        System.out.println("1. mediocampista");
+        System.out.println("2. delantero");
+        System.out.println("3. defensa");
+        System.out.println("4. arquero");
+
+        Scanner sc = new Scanner(System.in);
+        int posicion = sc.nextInt();
+
+        switch (posicion) {
+            case 1:
+                return "mediocampista";
+            case 2:
+                return "delantero";
+            case 3:
+                return "defensa";
+            case 4:
+                return "arquero";
+            default:
+                return null;
+        }
+
+    }
+
+    public EquipoReal seleccionarEquipoTemporada(Temporada temporada) {
+        System.out.println("Seleccione al equipo al que pertenece");
+        for (int i = 0; i < temporada.getEquipos().size(); i++) {
+            EquipoReal equipo = temporada.getEquipos().get(i);
+            System.out.println(equipo.getId() + ": " + equipo.getNombre());
+        }
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Equipo: ");
+        int equipoSeleccionadoId = sc.nextInt();
+
+        for (EquipoReal equipo : temporada.getEquipos()) {
+            if (equipo.getId() == equipoSeleccionadoId) {
+                return equipo;
+            }
+        }
+        return null;
     }
 
 }
