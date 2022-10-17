@@ -79,9 +79,9 @@ public class App {
 		System.out.println("1. Crear Equipo de Fantasía");
 		System.out.println("2. Comprar jugador");
 		System.out.println("3. Vender Jugador");
-		System.out.println("4. Configurar Alineación");
+		System.out.println("4. Ver puntuación");
 		System.out.println("5. Seleccionar capitan");
-		System.out.println("6. Ver puntuación");
+		System.out.println("6. Configurar Alineación");
 
 		System.out.println("Pulse una opción para continuar");
 		int opcion_seleccionada_participante = sc.nextInt();

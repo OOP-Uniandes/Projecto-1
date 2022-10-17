@@ -20,6 +20,7 @@ public class Administrador extends Usuario {
         System.out.println("2. Crear equipo");
         System.out.println("3. Crear jugador");
         System.out.println("4. Crear partido");
+        System.out.println("5. Entrar datos de partido");
         System.out.println("10. Guardar cambios y salir");
 
     }
@@ -96,10 +97,10 @@ public class Administrador extends Usuario {
 
     public Partido mostrarPartidos(Temporada temporada) {
         ArrayList<Partido> partidos = temporada.getPartidos();
-        System.out.println("Seleccionar partido a configurar: ");
+        System.out.println("\nSeleccionar partido a configurar: ");
         for (int i = 0; i < partidos.size(); i++) {
             Partido partido = partidos.get(i);
-            System.out.print(partido.getId() + ": " + partido.getEquipoLocal().getNombre() + " V.S "
+            System.out.print("\n" + partido.getId() + ": " + partido.getEquipoLocal().getNombre() + " V.S "
                     + partido.getEquipoVisitante().getNombre());
         }
         Scanner sc = new Scanner(System.in);
@@ -124,13 +125,13 @@ public class Administrador extends Usuario {
         HashMap<Jugador, Integer> rendimiento = new HashMap<Jugador, Integer>();
 
         for (Jugador jugador : equipoLocal.getJugadores()) {
-            System.out.println("Ingrese los puntos del jugador: " + jugador.getNombre());
+            System.out.println("/nIngrese los puntos del jugador: " + jugador.getNombre());
             int puntosJugador = sc.nextInt();
             rendimiento.put(jugador, puntosJugador);
         }
 
         for (Jugador jugador : equipoVisitante.getJugadores()) {
-            System.out.println("Ingrese los puntos del jugador: " + jugador.getNombre());
+            System.out.println("/nIngrese los puntos del jugador: " + jugador.getNombre());
             int puntosJugador = sc.nextInt();
             rendimiento.put(jugador, puntosJugador);
         }
