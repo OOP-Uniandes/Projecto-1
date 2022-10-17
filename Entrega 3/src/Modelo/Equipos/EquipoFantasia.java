@@ -96,4 +96,7 @@ public class EquipoFantasia extends Equipo {
         this.cantArqueros = cantArqueros;
     }
 
+    public void removeJugador(Jugador jugador) {
+        this.jugadores.remove(jugador);
+    }
 }

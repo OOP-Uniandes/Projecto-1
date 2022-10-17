@@ -81,6 +81,7 @@ public class App {
 		System.out.println("3. Vender Jugador");
 		System.out.println("4. Configurar Alineación");
 		System.out.println("5. Seleccionar capitan");
+		System.out.println("6. Ver puntuación");
 
 		System.out.println("Pulse una opción para continuar");
 		int opcion_seleccionada_participante = sc.nextInt();
@@ -178,10 +179,33 @@ public class App {
 				if (temporada.getId() == temporadaId) {
 					System.out.println("Intruduzca el nombre del jugador a vender ");
 					ArrayList<Jugador> jugadores = participanteActual.mostrarJugadoresTemporada(temporada);
+					String jugadorVenderNombre = sc.nextLine();
+					Jugador jugadorVender = participanteActual.buscarJugadorPorNombre(jugadorVenderNombre, jugadores);
+					participanteActual.getEquipo().removeJugador(jugadorVender);
+					participanteActual.getEquipo().setPresupuesto(
+							participanteActual.getEquipo().getPresupuesto() + jugadorVender.getPrecio() * 0.97);
+
+					System.out.println("Jugador vendido !");
 				}
 			}
 
 		} else if (opcion_seleccionada_participante == 4) {
+
+		} else if (opcion_seleccionada_participante == 5) {
+
+			sc.nextLine();
+			try {
+				System.out.println("Introducir nombre capitan: ");
+				String nombreCapitan = sc.nextLine();
+				Jugador capitan = participanteActual.buscarJugadorPorNombre(nombreCapitan,
+						participanteActual.getEquipo().getJugadores());
+				participanteActual.getEquipo().setCapitan(capitan);
+
+			} catch (Exception e) {
+				System.out.println("El capitan no esta2 en tu equipo :(");
+			}
+
+		} else if (opcion_seleccionada_participante == 6) {
 
 		} else {
 			System.out.println("Por favor seleccione una opción válida");
