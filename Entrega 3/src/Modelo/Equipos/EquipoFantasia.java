@@ -12,11 +12,15 @@ public class EquipoFantasia extends Equipo {
     ArrayList<Jugador> alineacion = new ArrayList<Jugador>();
     Jugador capitan = null;
 
-    public EquipoFantasia(String nombre, int id) {
+    public EquipoFantasia(String nombre, int id, int puntajeActual, double presupuesto, ArrayList<Jugador> alineacion, Jugador capitan) {
         super(id, nombre);
+        this.puntajeActual = puntajeActual;
+		this.presupuesto = presupuesto;
+		this.alineacion = alineacion;
+		this.capitan = capitan;
     }
 
-    public int getPuntajeActual() {
+	public int getPuntajeActual() {
         return puntajeActual;
     }
 
