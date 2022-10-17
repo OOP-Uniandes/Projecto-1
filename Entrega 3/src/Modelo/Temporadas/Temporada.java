@@ -10,6 +10,7 @@ public class Temporada {
     private String fechaInicio;
     private String fechaFinal;
     private String nombre;
+    private int presupuesto;
     private ArrayList<Partido> partidos = new ArrayList<Partido>();
     private ArrayList<Ranking> rankingActual = new ArrayList<Ranking>();
     private ArrayList<EquipoReal> equipos = new ArrayList<EquipoReal>();
@@ -19,6 +20,7 @@ public class Temporada {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
+        this.presupuesto = 0;
     }
 
     public int getId() {
@@ -76,5 +78,10 @@ public class Temporada {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+	public void setPresupuesto() {
+		this.presupuesto = 0;
+		
+	}
 
 }

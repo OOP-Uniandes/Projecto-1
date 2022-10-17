@@ -23,7 +23,7 @@ public class Administrador extends Usuario {
 
     }
 
-    public Temporada crearTemporada(int id, String nombre, String fechaInicio, String fechaFinal) {
+    public Temporada crearTemporada(int id, String nombre, String fechaInicio, String fechaFinal, int presupuesto) {
         Temporada temporada = new Temporada(id, nombre, fechaInicio, fechaFinal);
         return temporada;
     }

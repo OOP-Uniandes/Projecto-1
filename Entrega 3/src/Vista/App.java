@@ -48,6 +48,7 @@ public class App {
 					// menu usuario
 					participanteActual = new Participante(usuarioActual.nombre, usuarioActual.contraseña,
 							usuarioActual.rol);
+					menuUsuario();
 
 				} else if (usuarioActual.rol.equals("Administrador")) {
 					// menu administrador
@@ -67,6 +68,49 @@ public class App {
 		}
 		sc.close();
 
+	}
+	private static void menuUsuario() {
+		Scanner sc = new Scanner(System.in);
+		boolean continue_ = true;
+		
+		System.out.println("1. Crear Equipo de Fantasía");
+		System.out.println("2. Configurar Alineación");
+		System.out.println("3. Comprar Jugador");
+		System.out.println("4. Vender Jugador");
+		
+		System.out.println("Pulse una opción para continuar");
+		int opcion_seleccionada_participante = sc.nextInt();
+		
+		if (opcion_seleccionada_participante == 1) {
+			sc.nextLine();
+
+			System.out.println("Nombre equipo: ");
+			String nombre = sc.nextLine();
+
+			System.out.println("Temporada a la que pertenece: ");
+			int temporadaId = sc.nextInt();
+
+			for (Temporada temporada : temporadas) {
+				if (temporada.getId() == temporadaId) {
+					ArrayList<EquipoReal> equipos = temporada.getEquipos();
+					EquipoReal equipo = new EquipoReal(nombre, equipos.size() + 1);
+					equipos.add(equipo);
+					temporada.setEquipos(equipos);
+					System.out.println("\n\n\n\n\nEquipo creado y añadido a la temporada !");
+				}
+
+			}
+		} else if (opcion_seleccionada_participante == 2) {
+			
+		} else if (opcion_seleccionada_participante == 3) {
+			
+		} else if (opcion_seleccionada_participante == 4) {
+			
+		} else {
+			System.out.println("Por favor seleccione una opción válida");
+			menuUsuario();
+		}
+	
 	}
 
 	private static void menuAdministrador() {
@@ -88,9 +132,12 @@ public class App {
 
 				System.out.println("Fecha final:");
 				String fechaFinal = sc.nextLine();
+				
+				System.out.println("Presupuesto de la Temporada (para los equipos)");
+				int presupuesto = sc.nextInt();
 
 				int id = temporadas.get(temporadas.size() - 1).getId() + 1;
-				temporadas.add(adminActual.crearTemporada(id, nombre, fechaInicio, fechaFinal));
+				temporadas.add(adminActual.crearTemporada(id, nombre, fechaInicio, fechaFinal, presupuesto));
 				System.out.println("\n\n\n\n\nLa temporada ha sido creada con exito!");
 
 			} else if (opcion_seleccionada_administrador == 2) {

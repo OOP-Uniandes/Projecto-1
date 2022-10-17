@@ -7,6 +7,7 @@ import src.Modelo.Jugadores.Jugador;
 public class EquipoFantasia extends Equipo {
 
     int puntajeActual = 0;
+    String DueñoActual;
     double presupuesto;
     ArrayList<Jugador> alineacion = new ArrayList<Jugador>();
     Jugador capitan = null;

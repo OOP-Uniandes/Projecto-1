@@ -51,15 +51,18 @@ public class Archivo {
         String fechaInicio = temporadaActual.getString("fechaInicio");
         String fechaFinal = temporadaActual.getString("fechaFinal");
 
+        
         ArrayList<Ranking> rankings = cargarRanking(temporadaActual);
         ArrayList<EquipoReal> equipos = cargarEquipos(temporadaActual);
         ArrayList<Partido> partidos = cargarPartidos(temporadaActual, equipos);
 
-        Temporada temporada = new Temporada(id, nombre, fechaInicio, fechaFinal);
+        
+		Temporada temporada = new Temporada(id, nombre, fechaInicio, fechaFinal);
 
         temporada.setRankingActual(rankings);
         temporada.setEquipos(equipos);
         temporada.setPartidos(partidos);
+        temporada.setPresupuesto();
 
         return temporada;
     }
