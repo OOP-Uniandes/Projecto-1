@@ -15,6 +15,7 @@ public class EquipoFantasia extends Equipo {
     int cantDelanteros = 0;
 
     int cantDefensores = 0;
+    // comentario
 
     String DueñoActual;
     double presupuesto;
