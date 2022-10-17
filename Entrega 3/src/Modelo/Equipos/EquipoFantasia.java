@@ -15,10 +15,14 @@ public class EquipoFantasia extends Equipo {
     int cantDelanteros = 0;
 
     int cantDefensores = 0;
-    // comentario
 
+    int AlineacionArqueros = 0;
+    int AlineacionMedioCampistas = 0;
+    int AlineacionDefensas = 0;
+    int AlineacionDelanteros = 0;
     String DueñoActual;
     double presupuesto;
+
     ArrayList<Jugador> alineacion = new ArrayList<Jugador>();
     Jugador capitan = null;
 
@@ -98,5 +102,45 @@ public class EquipoFantasia extends Equipo {
 
     public void removeJugador(Jugador jugador) {
         this.jugadores.remove(jugador);
+    }
+
+    public int getAlineacionArqueros() {
+        return AlineacionArqueros;
+    }
+
+    public void setAlineacionArqueros(int alineacionArqueros) {
+        AlineacionArqueros = alineacionArqueros;
+    }
+
+    public int getAlineacionMedioCampistas() {
+        return AlineacionMedioCampistas;
+    }
+
+    public void setAlineacionMedioCampistas(int alineacionMedioCampistas) {
+        AlineacionMedioCampistas = alineacionMedioCampistas;
+    }
+
+    public int getAlineacionDefensas() {
+        return AlineacionDefensas;
+    }
+
+    public void setAlineacionDefensas(int alineacionDefensas) {
+        AlineacionDefensas = alineacionDefensas;
+    }
+
+    public int getAlineacionDelanteros() {
+        return AlineacionDelanteros;
+    }
+
+    public void setAlineacionDelanteros(int alineacionDelanteros) {
+        AlineacionDelanteros = alineacionDelanteros;
+    }
+
+    public String getDueñoActual() {
+        return DueñoActual;
+    }
+
+    public void setDueñoActual(String dueñoActual) {
+        DueñoActual = dueñoActual;
     }
 }

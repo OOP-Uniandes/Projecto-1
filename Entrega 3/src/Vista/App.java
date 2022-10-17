@@ -207,6 +207,72 @@ public class App {
 
 		} else if (opcion_seleccionada_participante == 6) {
 
+			System.out.println("Hora de generar una alineación");
+			System.out.println("Temporada a la que pertenece: ");
+			int temporadaId = sc.nextInt();
+			System.out.println("Seleccione el jugador a alinear");
+			String nombre_jugador = sc.nextLine();
+
+			for (Temporada temporada : temporadas) {
+				if (temporada.getId() == temporadaId) {
+					ArrayList<Jugador> Jugadorescomprados = participanteActual.getEquipo().getJugadores();
+					ArrayList<Jugador> alineacion_equipo = participanteActual.getEquipo().getAlineacion();
+					Jugador Jugador_a_alinear = participanteActual.buscarJugadorPorNombre(nombre_jugador,
+							Jugadorescomprados);
+
+					boolean continuar = false;
+
+					switch (Jugador_a_alinear.getPosicion()) {
+
+						case "arquero":
+							if (participanteActual.getEquipo().getAlineacionArqueros() < 1) {
+								continuar = true;
+							} else {
+								System.out.println("Ya tienes 1 arquero");
+								continuar = false;
+							}
+
+						case "defensa":
+
+							if (participanteActual.getEquipo().getAlineacionDefensas() < 4) {
+								continuar = true;
+							} else {
+								System.out.println("Ya tienes 4 defensores");
+								continuar = false;
+							}
+
+						case "mediocampista":
+
+							if (participanteActual.getEquipo().getAlineacionMedioCampistas() < 4) {
+								continuar = true;
+							} else {
+								System.out.println("Ya tienes 4 mediocampistas");
+								continuar = false;
+							}
+
+						case "delantero":
+
+							if (participanteActual.getEquipo().getAlineacionDelanteros() < 2) {
+								continuar = true;
+							} else {
+								System.out.println("Ya tienes 2 delanteros");
+								continuar = false;
+							}
+
+						default:
+
+							continuar = false;
+
+					}
+					if (continuar) {
+						alineacion_equipo.add(Jugador_a_alinear);
+					} else {
+						System.out.println(
+								"Ya tienes suficientes jugadores en las posiciones de la alineación correspondiente: 1 Arquero - 4 Defensas - 4 Medio Campistas - 2 Delanteros");
+					}
+
+				}
+			}
 		} else {
 			System.out.println("Por favor seleccione una opción válida");
 			menuUsuario();
