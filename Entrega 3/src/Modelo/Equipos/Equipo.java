@@ -7,7 +7,7 @@ import src.Modelo.Jugadores.Jugador;
 public class Equipo {
     private int id;
     private String nombre;
-    private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+    protected ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
     public Equipo(int id, String nombre) {
         this.id = id;

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import src.Modelo.Equipos.Equipo;
+import src.Modelo.Equipos.EquipoFantasia;
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
 import src.Modelo.Partidos.Partido;
@@ -76,9 +77,10 @@ public class App {
 		boolean continue_ = true;
 
 		System.out.println("1. Crear Equipo de Fantasía");
-		System.out.println("2. Configurar Alineación");
-		System.out.println("3. Comprar Jugador");
-		System.out.println("4. Vender Jugador");
+		System.out.println("2. Comprar jugador");
+		System.out.println("3. Vender Jugador");
+		System.out.println("4. Configurar Alineación");
+		System.out.println("5. Seleccionar capitan");
 
 		System.out.println("Pulse una opción para continuar");
 		int opcion_seleccionada_participante = sc.nextInt();
@@ -94,17 +96,90 @@ public class App {
 
 			for (Temporada temporada : temporadas) {
 				if (temporada.getId() == temporadaId) {
-					ArrayList<EquipoReal> equipos = temporada.getEquipos();
-					EquipoReal equipo = new EquipoReal(nombre, equipos.size() + 1);
-					equipos.add(equipo);
-					temporada.setEquipos(equipos);
-					System.out.println("\n\n\n\n\nEquipo creado y añadido a la temporada !");
-				}
+					EquipoFantasia equipoNuevo = participanteActual.crearEquipo(nombre, 0, 0,
+							temporada.getPresupuesto());
 
+					participanteActual.setEquipo(equipoNuevo);
+				}
 			}
 		} else if (opcion_seleccionada_participante == 2) {
+			sc.nextLine();
+			System.out.println("Temporada a la que pertenece: ");
+			int temporadaId = sc.nextInt();
+
+			for (Temporada temporada : temporadas) {
+				if (temporada.getId() == temporadaId) {
+					System.out.println("Intruduzca el nombre del jugador a comprar: ");
+					ArrayList<Jugador> jugadores = participanteActual.mostrarJugadoresTemporada(temporada);
+					String nombre_jugador = sc.nextLine();
+					Jugador jugadorComprar = participanteActual.buscarJugadorPorNombre(nombre_jugador, jugadores);
+					if (participanteActual.getEquipo().getPresupuesto() >= jugadorComprar.getPrecio()) {
+						EquipoFantasia equipoDelUsuario = participanteActual.getEquipo();
+						boolean continuar;
+
+						switch (jugadorComprar.getPosicion()) {
+							case "arquero":
+								if (equipoDelUsuario.getCantArqueros() < 2) {
+									continuar = true;
+								} else {
+									System.out.println("Ya tienes 2 arqueros");
+									continuar = false;
+								}
+								break;
+							case "mediocampista":
+								if (equipoDelUsuario.getCantMediocampistas() < 5) {
+									continuar = true;
+								} else {
+									System.out.println("Ya tienes 5 mediocampistas");
+									continuar = false;
+								}
+								break;
+							case "defensa":
+								if (equipoDelUsuario.getCantDefensores() < 5) {
+									continuar = true;
+								} else {
+									System.out.println("Ya tienes 5 defensores");
+									continuar = false;
+								}
+								break;
+							case "delantero":
+								if (equipoDelUsuario.getCantDelanteros() < 3) {
+									continuar = true;
+								} else {
+									System.out.println("Ya tienes 3 delanteros");
+									continuar = false;
+								}
+								break;
+							default:
+								continuar = false;
+								break;
+						}
+
+						if (continuar) {
+							int presupuesto = (int) participanteActual.getEquipo().getPresupuesto();
+							double nuevoPresupuesto = presupuesto - jugadorComprar.getPrecio();
+							participanteActual.getEquipo().setPresupuesto(nuevoPresupuesto);
+
+							participanteActual.getEquipo().addJugador(jugadorComprar);
+							System.out.println("Compra exitosa! Su nuevo presupuesto: " + nuevoPresupuesto);
+						}
+
+					} else {
+						System.out.println("No se puede comprar :(");
+					}
+				}
+			}
 
 		} else if (opcion_seleccionada_participante == 3) {
+			sc.nextLine();
+			System.out.println("Temporada a la que pertenece: ");
+			int temporadaId = sc.nextInt();
+			for (Temporada temporada : temporadas) {
+				if (temporada.getId() == temporadaId) {
+					System.out.println("Intruduzca el nombre del jugador a vender ");
+					ArrayList<Jugador> jugadores = participanteActual.mostrarJugadoresTemporada(temporada);
+				}
+			}
 
 		} else if (opcion_seleccionada_participante == 4) {
 

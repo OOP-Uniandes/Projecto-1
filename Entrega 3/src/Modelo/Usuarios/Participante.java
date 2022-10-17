@@ -4,28 +4,64 @@ import java.util.ArrayList;
 
 import src.Modelo.Equipos.Equipo;
 import src.Modelo.Equipos.EquipoFantasia;
+import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
+import src.Modelo.Temporadas.Temporada;
 
 public class Participante extends Usuario {
+
+    EquipoFantasia equipos = null;
 
     public Participante(String nombre, String contraseña, String rol) {
         super(nombre, contraseña, "Participante");
     }
 
-    public static void Main(String[] args) {
+    public EquipoFantasia crearEquipo(String nombre, int id, int puntajeActual, double presupuesto) {
+        EquipoFantasia equipo = new EquipoFantasia(nombre, id, puntajeActual, presupuesto);
+        return equipo;
 
     }
-    public EquipoFantasia crearEquipo(String nombre, int id, int puntajeActual, double presupuesto, ArrayList<Jugador> alineacion, Jugador capitan) {
-        EquipoFantasia equipo = new EquipoFantasia(nombre, id, puntajeActual, presupuesto, alineacion, capitan);
-            return equipo;
-    
-    }
+
     public void configurarAlineacion(ArrayList<Jugador> alineacion, EquipoFantasia equipo) {
-            equipo.setAlineacion(alineacion);
+        equipo.setAlineacion(alineacion);
     }
+
     public Jugador comprarJugador(int id, String nombre) {
         Jugador comprar = new Jugador(id, nombre, nombre, null);
-            return comprar;
-            
+        return comprar;
+
+    }
+
+    public EquipoFantasia getEquipo() {
+        return this.equipos;
+    }
+
+    public void setEquipo(EquipoFantasia equipos) {
+        this.equipos = equipos;
+    }
+
+    public ArrayList<Jugador> mostrarJugadoresTemporada(Temporada temporada) {
+        ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+
+        for (EquipoReal equipo : temporada.getEquipos()) {
+            for (Jugador jugador : equipo.getJugadores()) {
+                jugadores.add(jugador);
+            }
+        }
+
+        for (Jugador jugador : jugadores) {
+            System.out.println(jugador.getNombre() + " " + jugador.getPosicion() + " " + jugador.getPrecio());
+        }
+
+        return jugadores;
+    }
+
+    public Jugador buscarJugadorPorNombre(String nombreJugador, ArrayList<Jugador> jugadores) {
+        for (Jugador jugador : jugadores) {
+            if (jugador.getNombre().equals(nombreJugador)) {
+                return jugador;
+            }
+        }
+        return null;
     }
 }

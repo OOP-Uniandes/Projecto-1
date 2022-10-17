@@ -152,4 +152,8 @@ public class Archivo {
         }
         return jugadores;
     }
+
+    public void agregarTemporada() {
+
+    }
 }
