@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import src.Modelo.Equipos.Equipo;
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
+import src.Modelo.Partidos.Partido;
 import src.Modelo.Temporadas.Temporada;
 import src.Modelo.Usuarios.Administrador;
 import src.Modelo.Usuarios.Participante;
@@ -69,18 +70,19 @@ public class App {
 		sc.close();
 
 	}
+
 	private static void menuUsuario() {
 		Scanner sc = new Scanner(System.in);
 		boolean continue_ = true;
-		
+
 		System.out.println("1. Crear Equipo de Fantasía");
 		System.out.println("2. Configurar Alineación");
 		System.out.println("3. Comprar Jugador");
 		System.out.println("4. Vender Jugador");
-		
+
 		System.out.println("Pulse una opción para continuar");
 		int opcion_seleccionada_participante = sc.nextInt();
-		
+
 		if (opcion_seleccionada_participante == 1) {
 			sc.nextLine();
 
@@ -101,16 +103,16 @@ public class App {
 
 			}
 		} else if (opcion_seleccionada_participante == 2) {
-			
+
 		} else if (opcion_seleccionada_participante == 3) {
-			
+
 		} else if (opcion_seleccionada_participante == 4) {
-			
+
 		} else {
 			System.out.println("Por favor seleccione una opción válida");
 			menuUsuario();
 		}
-	
+
 	}
 
 	private static void menuAdministrador() {
@@ -132,7 +134,7 @@ public class App {
 
 				System.out.println("Fecha final:");
 				String fechaFinal = sc.nextLine();
-				
+
 				System.out.println("Presupuesto de la Temporada (para los equipos)");
 				int presupuesto = sc.nextInt();
 
@@ -190,17 +192,58 @@ public class App {
 				}
 
 			} else if (opcion_seleccionada_administrador == 4) {
-
+				sc.nextLine();
 				System.out.println("Temporada a la que pertenece: ");
 				adminActual.mostrarLigas(temporadas);
 				int temporadaId = sc.nextInt();
+
 				for (Temporada temporada : temporadas) {
 					if (temporada.getId() == temporadaId) {
-						// crear funciones en administrador
-						EquipoReal equipoLocal;
-						EquipoReal equipoVisitante;
+
+						System.out.print("Equipo local: ");
+						EquipoReal equipoLocal = adminActual.seleccionarEquipoTemporada(temporada);
+
+						System.out.print("Equipo visitante: ");
+						EquipoReal equipoVisitante = adminActual.seleccionarEquipoTemporada(temporada);
+
+						System.out.print("Fecha: ");
+						String fecha = sc.nextLine();
+
+						System.out.print("Hora : ");
+						String hora = sc.nextLine();
+
+						Partido partido = new Partido(temporada.getPartidos().size() - 1, equipoLocal, equipoVisitante,
+								fecha, hora);
+
+						ArrayList<Partido> partidos = temporada.getPartidos();
+
+						partidos.add(partido);
+
+						temporada.setPartidos(partidos);
+
+						System.out.println("\n\n\n\n\n\n Partido añadido !");
 					}
 				}
+
+			} else if (opcion_seleccionada_administrador == 5) {
+				// Registrar informacion de partidos
+				sc.nextLine();
+				System.out.println("Temporada a la que pertenece: ");
+				adminActual.mostrarLigas(temporadas);
+				int temporadaId = sc.nextInt();
+
+				Partido partido_seleccionado = null;
+
+				for (Temporada temporada : temporadas) {
+
+					if (temporada.getId() == temporadaId) {
+						partido_seleccionado = adminActual.mostrarPartidos(temporada);
+					}
+				}
+
+				adminActual.registrarDatosPartido(partido_seleccionado);
+
+				System.out.println("\n\n\n\n\n\n\n\nDatos registrados!");
 
 			} else if (opcion_seleccionada_administrador == 10) {
 				ObjectMapper mapper = new ObjectMapper();

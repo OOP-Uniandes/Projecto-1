@@ -5,6 +5,7 @@
             "nombre": "Liga 1",
             "fechaInicio": "12-10-2022",
             "fechaFinal": "12-12-2022",
+            "presupuesto": 15000,
             "ranking": [
                 {
                     "posicion": 1,

@@ -1,6 +1,7 @@
 package src.Modelo.Usuarios;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import src.Modelo.Equipos.EquipoReal;
@@ -24,7 +25,7 @@ public class Administrador extends Usuario {
     }
 
     public Temporada crearTemporada(int id, String nombre, String fechaInicio, String fechaFinal, int presupuesto) {
-        Temporada temporada = new Temporada(id, nombre, fechaInicio, fechaFinal);
+        Temporada temporada = new Temporada(id, nombre, fechaInicio, fechaFinal, presupuesto);
         return temporada;
     }
 
@@ -76,7 +77,7 @@ public class Administrador extends Usuario {
     }
 
     public EquipoReal seleccionarEquipoTemporada(Temporada temporada) {
-        System.out.println("Seleccione al equipo al que pertenece");
+        System.out.println("Seleccione al equipo: ");
         for (int i = 0; i < temporada.getEquipos().size(); i++) {
             EquipoReal equipo = temporada.getEquipos().get(i);
             System.out.println(equipo.getId() + ": " + equipo.getNombre());
@@ -93,4 +94,45 @@ public class Administrador extends Usuario {
         return null;
     }
 
+    public Partido mostrarPartidos(Temporada temporada) {
+        ArrayList<Partido> partidos = temporada.getPartidos();
+        System.out.println("Seleccionar partido a configurar: ");
+        for (int i = 0; i < partidos.size(); i++) {
+            Partido partido = partidos.get(i);
+            System.out.print(partido.getId() + ": " + partido.getEquipoLocal().getNombre() + " V.S "
+                    + partido.getEquipoVisitante().getNombre());
+        }
+        Scanner sc = new Scanner(System.in);
+        int idPartido = sc.nextInt();
+
+        for (Partido partido : partidos) {
+            if (partido.getId() == idPartido) {
+                return partido;
+            }
+        }
+        return null;
+
+    }
+
+    public void registrarDatosPartido(Partido partido) {
+
+        Scanner sc = new Scanner(System.in);
+
+        EquipoReal equipoLocal = partido.getEquipoLocal();
+        EquipoReal equipoVisitante = partido.getEquipoVisitante();
+
+        HashMap<Jugador, Integer> rendimiento = new HashMap<Jugador, Integer>();
+
+        for (Jugador jugador : equipoLocal.getJugadores()) {
+            System.out.println("Ingrese los puntos del jugador: " + jugador.getNombre());
+            int puntosJugador = sc.nextInt();
+            rendimiento.put(jugador, puntosJugador);
+        }
+
+        for (Jugador jugador : equipoVisitante.getJugadores()) {
+            System.out.println("Ingrese los puntos del jugador: " + jugador.getNombre());
+            int puntosJugador = sc.nextInt();
+            rendimiento.put(jugador, puntosJugador);
+        }
+    }
 }

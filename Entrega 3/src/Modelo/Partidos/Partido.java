@@ -12,7 +12,7 @@ public class Partido {
     private EquipoReal equipoVisitante;
     private String fecha;
     private String hora;
-    private ArrayList<HashMap<Jugador, Integer>> rendimientoJugadores = new ArrayList<HashMap<Jugador, Integer>>();
+    private HashMap<Jugador, Integer> rendimientoJugadores = new HashMap<Jugador, Integer>();
 
     public Partido(int id, EquipoReal equipoLocal, EquipoReal equipoVisitante, String fecha, String hora) {
         this.id = id;
@@ -62,11 +62,11 @@ public class Partido {
         this.hora = hora;
     }
 
-    public ArrayList<HashMap<Jugador, Integer>> getRendimientoJugadores() {
+    public HashMap<Jugador, Integer> getRendimientoJugadores() {
         return rendimientoJugadores;
     }
 
-    public void setRendimientoJugadores(ArrayList<HashMap<Jugador, Integer>> rendimientoJugadores) {
+    public void setRendimientoJugadores(HashMap<Jugador, Integer> rendimientoJugadores) {
         this.rendimientoJugadores = rendimientoJugadores;
     }
 
