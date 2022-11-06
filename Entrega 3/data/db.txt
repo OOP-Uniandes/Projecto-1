@@ -1,2 +1,4 @@
 Andres 123 Administrador
 Miguel 123 Usuario
+Mocoso arias Usuario
+Samuel Santa Usuario
