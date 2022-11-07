@@ -25,7 +25,7 @@ public class Login extends JFrame{
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         marco.setVisible(true);
         
-        BufferedImage Logo = ImageIO.read(new File("C:\\Users\\s.santaa\\Desktop\\Projecto1\\Projecto-1\\Entrega 3\\src\\Assets\\Logo.png"));
+        BufferedImage Logo = ImageIO.read(new File("Assets/Logo.png"));
         logo = new JLabel(new ImageIcon(Logo));
         logo.setBounds(200, 250, 347, 321);
 
@@ -57,5 +57,5 @@ public class Login extends JFrame{
         marco.add(registrarse);
     }
 
-    }
 }
+
