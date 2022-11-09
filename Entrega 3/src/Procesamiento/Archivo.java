@@ -17,31 +17,25 @@ import src.Modelo.Temporadas.Temporada;
 
 public class Archivo {
 
-    public ArrayList<Temporada> cargarTemporadas(String resourceName) {
-        ArrayList<Temporada> listaTemporadas = new ArrayList<Temporada>();
+    public Temporada cargarTemporadas(String resourceName) {
 
         String loc = new String("data/datos_iniciales.json");
         File file = new File(loc);
 
+        Temporada temporada;
+
         try {
             String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
             JSONObject jsonContent = new JSONObject(content);
-            JSONArray temporadas = jsonContent.getJSONArray("temporadas");
-
-            for (int i = 0; i < temporadas.length(); i++) {
-
-                JSONObject temporadaActual = temporadas.getJSONObject(i);
-
-                Temporada temporada = cargaTemporada(temporadaActual);
-
-                listaTemporadas.add(temporada);
-            }
+            JSONObject temporadaActual = jsonContent.getJSONObject("temporada");
+            temporada = cargaTemporada(temporadaActual);
 
         } catch (IOException e) {
+            temporada = null;
             e.printStackTrace();
         }
 
-        return listaTemporadas;
+        return temporada;
     }
 
     private Temporada cargaTemporada(JSONObject temporadaActual) {

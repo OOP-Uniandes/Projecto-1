@@ -7,7 +7,7 @@ import java.util.Scanner;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import src.Modelo.Equipos.Equipo;
+import src.Interfaces.Login;
 import src.Modelo.Equipos.EquipoFantasia;
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
@@ -21,56 +21,60 @@ import src.Procesamiento.Archivo;
 public class App {
 
 	public static Usuario usuarioActual = null;
+	public static boolean usuarioLogueado = false;
 	public static Administrador adminActual = null;
 	public static Participante participanteActual = null;
-	public static ArrayList<Temporada> temporadas = new ArrayList<Temporada>();
+	public static Temporada temporada;;
 
 	public static void main(String[] args) throws IOException {
 		{
 			Archivo reader = new Archivo();
-			temporadas = reader.cargarTemporadas("data/datos_iniciales.json");
-			MenuInicioDeSesion();
+			temporada = reader.cargarTemporadas("data/datos_iniciales.json");
+			new Login();
+
 		}
 	}
 
-	private static void MenuInicioDeSesion() throws IOException {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("1. Iniciar Sesión");
-		System.out.println("2. Registrate Gratis");
-		System.out.println("3. Salir");
-		System.out.println("Selecciona una opción para continuar");
+	// private static void MenuInicioDeSesion() throws IOException {
+	// Scanner sc = new Scanner(System.in);
+	// System.out.println("1. Iniciar Sesión");
+	// System.out.println("2. Registrate Gratis");
+	// System.out.println("3. Salir");
+	// System.out.println("Selecciona una opción para continuar");
 
-		int opcion_seleccionada = sc.nextInt();
+	// int opcion_seleccionada = sc.nextInt();
 
-		if (opcion_seleccionada == 1) {
-			boolean login = iniciarSesion();
+	// if (opcion_seleccionada == 1) {
+	// //boolean login = iniciarSesion();
 
-			if (login == true) {
-				if (usuarioActual.rol.equals("Usuario")) {
-					// menu usuario
-					participanteActual = new Participante(usuarioActual.nombre, usuarioActual.contraseña,
-							usuarioActual.rol);
-					menuUsuario();
+	// if (login == true) {
+	// if (usuarioActual.rol.equals("Usuario")) {
+	// // menu usuario
+	// participanteActual = new Participante(usuarioActual.nombre,
+	// usuarioActual.contraseña,
+	// usuarioActual.rol);
+	// menuUsuario();
 
-				} else if (usuarioActual.rol.equals("Administrador")) {
-					// menu administrador
-					adminActual = new Administrador(usuarioActual.nombre, usuarioActual.contraseña, usuarioActual.rol);
-					menuAdministrador();
+	// } else if (usuarioActual.rol.equals("Administrador")) {
+	// // menu administrador
+	// adminActual = new Administrador(usuarioActual.nombre,
+	// usuarioActual.contraseña, usuarioActual.rol);
+	// menuAdministrador();
 
-				}
-			} else {
-				MenuInicioDeSesion();
-			}
+	// }
+	// } else {
+	// MenuInicioDeSesion();
+	// }
 
-		} else if (opcion_seleccionada == 2) {
-			RegistrarUsuario();
+	// } else if (opcion_seleccionada == 2) {
+	// RegistrarUsuario();
 
-		} else {
-			System.out.println("Has salido de la aplicación");
-		}
-		sc.close();
+	// } else {
+	// System.out.println("Has salido de la aplicación");
+	// }
+	// sc.close();
 
-	}
+	// }
 
 	private static void menuUsuario() {
 		Scanner sc = new Scanner(System.in);
@@ -87,107 +91,86 @@ public class App {
 		int opcion_seleccionada_participante = sc.nextInt();
 
 		if (opcion_seleccionada_participante == 1) {
-			sc.nextLine();
 
-			System.out.println("Nombre equipo: ");
-			String nombre = sc.nextLine();
+			// EquipoFantasia equipoNuevo = participanteActual.crearEquipo(nombre, 0,
+			// 0,temporada.getPresupuesto());
 
-			System.out.println("Temporada a la que pertenece: ");
-			int temporadaId = sc.nextInt();
+			// participanteActual.setEquipo(equipoNuevo);
 
-			for (Temporada temporada : temporadas) {
-				if (temporada.getId() == temporadaId) {
-					EquipoFantasia equipoNuevo = participanteActual.crearEquipo(nombre, 0, 0,
-							temporada.getPresupuesto());
-
-					participanteActual.setEquipo(equipoNuevo);
-				}
-			}
 		} else if (opcion_seleccionada_participante == 2) {
-			sc.nextLine();
-			System.out.println("Temporada a la que pertenece: ");
-			int temporadaId = sc.nextInt();
 
-			for (Temporada temporada : temporadas) {
-				if (temporada.getId() == temporadaId) {
-					System.out.println("Intruduzca el nombre del jugador a comprar: ");
-					ArrayList<Jugador> jugadores = participanteActual.mostrarJugadoresTemporada(temporada);
-					String nombre_jugador = sc.nextLine();
-					Jugador jugadorComprar = participanteActual.buscarJugadorPorNombre(nombre_jugador, jugadores);
-					if (participanteActual.getEquipo().getPresupuesto() >= jugadorComprar.getPrecio()) {
-						EquipoFantasia equipoDelUsuario = participanteActual.getEquipo();
-						boolean continuar;
+			System.out.println("Intruduzca el nombre del jugador a comprar: ");
+			ArrayList<Jugador> jugadores = participanteActual.mostrarJugadoresTemporada(temporada);
+			String nombre_jugador = sc.nextLine();
+			Jugador jugadorComprar = participanteActual.buscarJugadorPorNombre(nombre_jugador, jugadores);
+			if (participanteActual.getEquipo().getPresupuesto() >= jugadorComprar.getPrecio()) {
+				EquipoFantasia equipoDelUsuario = participanteActual.getEquipo();
+				boolean continuar;
 
-						switch (jugadorComprar.getPosicion()) {
-							case "arquero":
-								if (equipoDelUsuario.getCantArqueros() < 2) {
-									continuar = true;
-								} else {
-									System.out.println("Ya tienes 2 arqueros");
-									continuar = false;
-								}
-								break;
-							case "mediocampista":
-								if (equipoDelUsuario.getCantMediocampistas() < 5) {
-									continuar = true;
-								} else {
-									System.out.println("Ya tienes 5 mediocampistas");
-									continuar = false;
-								}
-								break;
-							case "defensa":
-								if (equipoDelUsuario.getCantDefensores() < 5) {
-									continuar = true;
-								} else {
-									System.out.println("Ya tienes 5 defensores");
-									continuar = false;
-								}
-								break;
-							case "delantero":
-								if (equipoDelUsuario.getCantDelanteros() < 3) {
-									continuar = true;
-								} else {
-									System.out.println("Ya tienes 3 delanteros");
-									continuar = false;
-								}
-								break;
-							default:
-								continuar = false;
-								break;
+				switch (jugadorComprar.getPosicion()) {
+					case "arquero":
+						if (equipoDelUsuario.getCantArqueros() < 2) {
+							continuar = true;
+						} else {
+							System.out.println("Ya tienes 2 arqueros");
+							continuar = false;
 						}
-
-						if (continuar) {
-							int presupuesto = (int) participanteActual.getEquipo().getPresupuesto();
-							double nuevoPresupuesto = presupuesto - jugadorComprar.getPrecio();
-							participanteActual.getEquipo().setPresupuesto(nuevoPresupuesto);
-
-							participanteActual.getEquipo().addJugador(jugadorComprar);
-							System.out.println("Compra exitosa! Su nuevo presupuesto: " + nuevoPresupuesto);
+						break;
+					case "mediocampista":
+						if (equipoDelUsuario.getCantMediocampistas() < 5) {
+							continuar = true;
+						} else {
+							System.out.println("Ya tienes 5 mediocampistas");
+							continuar = false;
 						}
-
-					} else {
-						System.out.println("No se puede comprar :(");
-					}
+						break;
+					case "defensa":
+						if (equipoDelUsuario.getCantDefensores() < 5) {
+							continuar = true;
+						} else {
+							System.out.println("Ya tienes 5 defensores");
+							continuar = false;
+						}
+						break;
+					case "delantero":
+						if (equipoDelUsuario.getCantDelanteros() < 3) {
+							continuar = true;
+						} else {
+							System.out.println("Ya tienes 3 delanteros");
+							continuar = false;
+						}
+						break;
+					default:
+						continuar = false;
+						break;
 				}
+
+				if (continuar) {
+					int presupuesto = (int) participanteActual.getEquipo().getPresupuesto();
+					double nuevoPresupuesto = presupuesto - jugadorComprar.getPrecio();
+					participanteActual.getEquipo().setPresupuesto(nuevoPresupuesto);
+
+					participanteActual.getEquipo().addJugador(jugadorComprar);
+					System.out.println("Compra exitosa! Su nuevo presupuesto: " + nuevoPresupuesto);
+				}
+
+			} else {
+				System.out.println("No se puede comprar :(");
 			}
 
 		} else if (opcion_seleccionada_participante == 3) {
 			sc.nextLine();
 			System.out.println("Temporada a la que pertenece: ");
-			int temporadaId = sc.nextInt();
-			for (Temporada temporada : temporadas) {
-				if (temporada.getId() == temporadaId) {
-					System.out.println("Intruduzca el nombre del jugador a vender ");
-					ArrayList<Jugador> jugadores = participanteActual.mostrarJugadoresTemporada(temporada);
-					String jugadorVenderNombre = sc.nextLine();
-					Jugador jugadorVender = participanteActual.buscarJugadorPorNombre(jugadorVenderNombre, jugadores);
-					participanteActual.getEquipo().removeJugador(jugadorVender);
-					participanteActual.getEquipo().setPresupuesto(
-							participanteActual.getEquipo().getPresupuesto() + jugadorVender.getPrecio() * 0.97);
 
-					System.out.println("Jugador vendido !");
-				}
-			}
+			System.out.println("Intruduzca el nombre del jugador a vender ");
+			ArrayList<Jugador> jugadores = participanteActual.mostrarJugadoresTemporada(temporada);
+			String jugadorVenderNombre = sc.nextLine();
+			Jugador jugadorVender = participanteActual.buscarJugadorPorNombre(jugadorVenderNombre, jugadores);
+			participanteActual.getEquipo().removeJugador(jugadorVender);
+			participanteActual.getEquipo().setPresupuesto(
+					participanteActual.getEquipo().getPresupuesto() + jugadorVender.getPrecio() * 0.97);
+
+			System.out.println("Jugador vendido !");
 
 		} else if (opcion_seleccionada_participante == 4) {
 
@@ -213,66 +196,62 @@ public class App {
 			System.out.println("Seleccione el jugador a alinear");
 			String nombre_jugador = sc.nextLine();
 
-			for (Temporada temporada : temporadas) {
-				if (temporada.getId() == temporadaId) {
-					ArrayList<Jugador> Jugadorescomprados = participanteActual.getEquipo().getJugadores();
-					ArrayList<Jugador> alineacion_equipo = participanteActual.getEquipo().getAlineacion();
-					Jugador Jugador_a_alinear = participanteActual.buscarJugadorPorNombre(nombre_jugador,
-							Jugadorescomprados);
+			ArrayList<Jugador> Jugadorescomprados = participanteActual.getEquipo().getJugadores();
+			ArrayList<Jugador> alineacion_equipo = participanteActual.getEquipo().getAlineacion();
+			Jugador Jugador_a_alinear = participanteActual.buscarJugadorPorNombre(nombre_jugador,
+					Jugadorescomprados);
 
-					boolean continuar = false;
+			boolean continuar = false;
 
-					switch (Jugador_a_alinear.getPosicion()) {
+			switch (Jugador_a_alinear.getPosicion()) {
 
-						case "arquero":
-							if (participanteActual.getEquipo().getAlineacionArqueros() < 1) {
-								continuar = true;
-							} else {
-								System.out.println("Ya tienes 1 arquero");
-								continuar = false;
-							}
-
-						case "defensa":
-
-							if (participanteActual.getEquipo().getAlineacionDefensas() < 4) {
-								continuar = true;
-							} else {
-								System.out.println("Ya tienes 4 defensores");
-								continuar = false;
-							}
-
-						case "mediocampista":
-
-							if (participanteActual.getEquipo().getAlineacionMedioCampistas() < 4) {
-								continuar = true;
-							} else {
-								System.out.println("Ya tienes 4 mediocampistas");
-								continuar = false;
-							}
-
-						case "delantero":
-
-							if (participanteActual.getEquipo().getAlineacionDelanteros() < 2) {
-								continuar = true;
-							} else {
-								System.out.println("Ya tienes 2 delanteros");
-								continuar = false;
-							}
-
-						default:
-
-							continuar = false;
-
-					}
-					if (continuar) {
-						alineacion_equipo.add(Jugador_a_alinear);
+				case "arquero":
+					if (participanteActual.getEquipo().getAlineacionArqueros() < 1) {
+						continuar = true;
 					} else {
-						System.out.println(
-								"Ya tienes suficientes jugadores en las posiciones de la alineación correspondiente: 1 Arquero - 4 Defensas - 4 Medio Campistas - 2 Delanteros");
+						System.out.println("Ya tienes 1 arquero");
+						continuar = false;
 					}
 
-				}
+				case "defensa":
+
+					if (participanteActual.getEquipo().getAlineacionDefensas() < 4) {
+						continuar = true;
+					} else {
+						System.out.println("Ya tienes 4 defensores");
+						continuar = false;
+					}
+
+				case "mediocampista":
+
+					if (participanteActual.getEquipo().getAlineacionMedioCampistas() < 4) {
+						continuar = true;
+					} else {
+						System.out.println("Ya tienes 4 mediocampistas");
+						continuar = false;
+					}
+
+				case "delantero":
+
+					if (participanteActual.getEquipo().getAlineacionDelanteros() < 2) {
+						continuar = true;
+					} else {
+						System.out.println("Ya tienes 2 delanteros");
+						continuar = false;
+					}
+
+				default:
+
+					continuar = false;
+
 			}
+			if (continuar) {
+				alineacion_equipo.add(Jugador_a_alinear);
+			} else {
+				System.out.println(
+						"Ya tienes suficientes jugadores en las posiciones de la alineación correspondiente: 1 Arquero - 4 Defensas - 4 Medio Campistas - 2 Delanteros");
+			}
+
 		} else {
 			System.out.println("Por favor seleccione una opción válida");
 			menuUsuario();
@@ -303,8 +282,6 @@ public class App {
 				System.out.println("Presupuesto de la Temporada (para los equipos)");
 				int presupuesto = sc.nextInt();
 
-				int id = temporadas.get(temporadas.size() - 1).getId() + 1;
-				temporadas.add(adminActual.crearTemporada(id, nombre, fechaInicio, fechaFinal, presupuesto));
 				System.out.println("\n\n\n\n\nLa temporada ha sido creada con exito!");
 
 			} else if (opcion_seleccionada_administrador == 2) {
@@ -314,19 +291,14 @@ public class App {
 				String nombre = sc.nextLine();
 
 				System.out.println("Temporada a la que pertenece: ");
-				adminActual.mostrarLigas(temporadas);
+
 				int temporadaId = sc.nextInt();
 
-				for (Temporada temporada : temporadas) {
-					if (temporada.getId() == temporadaId) {
-						ArrayList<EquipoReal> equipos = temporada.getEquipos();
-						EquipoReal equipo = new EquipoReal(nombre, equipos.size() + 1);
-						equipos.add(equipo);
-						temporada.setEquipos(equipos);
-						System.out.println("\n\n\n\n\nEquipo creado y añadido a la temporada !");
-					}
-
-				}
+				ArrayList<EquipoReal> equipos = temporada.getEquipos();
+				EquipoReal equipo = new EquipoReal(nombre, equipos.size() + 1);
+				equipos.add(equipo);
+				temporada.setEquipos(equipos);
+				System.out.println("\n\n\n\n\nEquipo creado y añadido a la temporada !");
 
 			} else if (opcion_seleccionada_administrador == 3) {
 				sc.nextLine();
@@ -339,81 +311,65 @@ public class App {
 				Double precio = sc.nextDouble();
 
 				System.out.println("Seleccione la temporada: ");
-				adminActual.mostrarLigas(temporadas);
+
 				int temporadaId = sc.nextInt();
 
 				Temporada temporadaSeleccionada;
-				for (Temporada temporada : temporadas) {
-					if (temporada.getId() == temporadaId) {
-						temporadaSeleccionada = temporada;
-						EquipoReal equipoSeleccionado = adminActual.seleccionarEquipoTemporada(temporadaSeleccionada);
-						Jugador jugador = new Jugador(equipoSeleccionado.getJugadores().size() + 1, nombre, posicion,
-								precio);
-						ArrayList<Jugador> jugadoresEquipo = equipoSeleccionado.getJugadores();
-						jugadoresEquipo.add(jugador);
-						equipoSeleccionado.setJugadores(jugadoresEquipo);
-						System.out.println("\n\n\n\n\n\nEl jugador ha sido añadido !");
-					}
-				}
+
+				temporadaSeleccionada = temporada;
+				EquipoReal equipoSeleccionado = adminActual.seleccionarEquipoTemporada(temporadaSeleccionada);
+				Jugador jugador = new Jugador(equipoSeleccionado.getJugadores().size() + 1, nombre, posicion,
+						precio);
+				ArrayList<Jugador> jugadoresEquipo = equipoSeleccionado.getJugadores();
+				jugadoresEquipo.add(jugador);
+				equipoSeleccionado.setJugadores(jugadoresEquipo);
+				System.out.println("\n\n\n\n\n\nEl jugador ha sido añadido !");
 
 			} else if (opcion_seleccionada_administrador == 4) {
 				sc.nextLine();
 				System.out.println("Temporada a la que pertenece: ");
-				adminActual.mostrarLigas(temporadas);
+
 				int temporadaId = sc.nextInt();
 
-				for (Temporada temporada : temporadas) {
-					if (temporada.getId() == temporadaId) {
+				System.out.print("Equipo local: ");
+				EquipoReal equipoLocal = adminActual.seleccionarEquipoTemporada(temporada);
 
-						System.out.print("Equipo local: ");
-						EquipoReal equipoLocal = adminActual.seleccionarEquipoTemporada(temporada);
+				System.out.print("Equipo visitante: ");
+				EquipoReal equipoVisitante = adminActual.seleccionarEquipoTemporada(temporada);
 
-						System.out.print("Equipo visitante: ");
-						EquipoReal equipoVisitante = adminActual.seleccionarEquipoTemporada(temporada);
+				System.out.print("Fecha: ");
+				String fecha = sc.nextLine();
 
-						System.out.print("Fecha: ");
-						String fecha = sc.nextLine();
+				System.out.print("Hora : ");
+				String hora = sc.nextLine();
 
-						System.out.print("Hora : ");
-						String hora = sc.nextLine();
+				Partido partido = new Partido(temporada.getPartidos().size() - 1, equipoLocal, equipoVisitante,
+						fecha, hora);
 
-						Partido partido = new Partido(temporada.getPartidos().size() - 1, equipoLocal, equipoVisitante,
-								fecha, hora);
+				ArrayList<Partido> partidos = temporada.getPartidos();
 
-						ArrayList<Partido> partidos = temporada.getPartidos();
+				partidos.add(partido);
 
-						partidos.add(partido);
+				temporada.setPartidos(partidos);
 
-						temporada.setPartidos(partidos);
-
-						System.out.println("\n\n\n\n\n\n Partido añadido !");
-					}
-				}
+				System.out.println("\n\n\n\n\n\n Partido añadido !");
 
 			} else if (opcion_seleccionada_administrador == 5) {
 				// Registrar informacion de partidos
 				sc.nextLine();
 				System.out.println("Temporada a la que pertenece: ");
-				adminActual.mostrarLigas(temporadas);
+
 				int temporadaId = sc.nextInt();
 
 				Partido partido_seleccionado = null;
-
-				for (Temporada temporada : temporadas) {
-
-					if (temporada.getId() == temporadaId) {
-						partido_seleccionado = adminActual.mostrarPartidos(temporada);
-					}
-				}
-
+				partido_seleccionado = adminActual.mostrarPartidos(temporada);
 				adminActual.registrarDatosPartido(partido_seleccionado);
-
 				System.out.println("\n\n\n\n\n\n\n\nDatos registrados!");
 
 			} else if (opcion_seleccionada_administrador == 10) {
 				ObjectMapper mapper = new ObjectMapper();
 				try {
-					String json = mapper.writeValueAsString(temporadas);
+					String json = mapper.writeValueAsString(temporada);
 					System.out.println(json);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
@@ -422,40 +378,6 @@ public class App {
 			} else if (opcion_seleccionada_administrador == 0) {
 				continue_ = false;
 			}
-		}
-	}
-
-	private static boolean iniciarSesion() throws IOException {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Ingresa tu nombre de usuario");
-		String usuario = sc.nextLine();
-
-		System.out.println("Ingresa tu contraseña");
-		String contrasena = sc.nextLine();
-
-		Usuario user = src.Modelo.Usuarios.Usuario.iniciarSesion(usuario, contrasena);
-
-		if (user == null) {
-			MenuInicioDeSesion();
-			return false;
-		}
-		usuarioActual = user;
-		return true;
-	}
-
-	private static void RegistrarUsuario() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Ingresa tu nombre de usuario");
-		String usuario = sc.nextLine();
-
-		System.out.println("Ingresa tu contraseña");
-		String contrasena = sc.nextLine();
-
-		sc.close();
-
-		Usuario user = src.Modelo.Usuarios.Usuario.RegistrarUsuario(usuario, contrasena, "Usuario");
-		if (user != null) {
-			usuarioActual = user;
 		}
 	}
 

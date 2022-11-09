@@ -1,0 +1,91 @@
+package src.Interfaces;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class UserFrame extends JFrame {
+
+    public UserFrame() {
+
+        super("Fantasy League");
+
+        this.setSize(1480, 920);
+
+        this.setLayout(new BorderLayout(0, 0));
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel panelTop = makePanelTop("17/10/2022", "15000");
+        JPanel panelLeft = makePanelLeft();
+
+        this.add(panelTop, BorderLayout.NORTH);
+        this.add(panelLeft, BorderLayout.WEST);
+
+        this.setVisible(true);
+
+    }
+
+    private JPanel makePanelLeft() {
+        JPanel panelLeft = new JPanel();
+        panelLeft.setBackground(Color.BLUE);
+        panelLeft.setPreferredSize(new Dimension(200, 0));
+        panelLeft.setLayout(new GridLayout(5, 1));
+
+        JLabel imgNameLabel = new JLabel("Nombre de Usuario");
+        ImageIcon img = new ImageIcon("Assets/Logo.png");
+        imgNameLabel.setIcon(img);
+        imgNameLabel.setHorizontalTextPosition(JLabel.CENTER);
+
+        panelLeft.add(imgNameLabel);
+        return panelLeft;
+    }
+
+    private JPanel makePanelTop(String temporadaFechas, String presupuesto) {
+        JPanel panelTop = new JPanel();
+
+        panelTop.setBackground(new Color(255, 255, 255));
+        panelTop.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+
+        JLabel temporadaActualLBL = new JLabel("   Temporada Actual ");
+        JLabel temporadaFechasLBL = new JLabel(temporadaFechas);
+
+        JLabel tuPresupuestoLBL = new JLabel("Tu presupuesto: ");
+        JLabel presupuestoLBL = new JLabel(presupuesto);
+
+        temporadaActualLBL.setFont(new Font("Arial", Font.BOLD, 30));
+        temporadaActualLBL.setForeground(new Color(0, 123, 255));
+
+        temporadaFechasLBL.setFont(new Font("Arial", Font.BOLD, 16));
+        temporadaFechasLBL.setBackground(new Color(0, 123, 255));
+        temporadaFechasLBL.setForeground(Color.white);
+        temporadaFechasLBL.setOpaque(true);
+
+        tuPresupuestoLBL.setFont(new Font("Arial", Font.BOLD, 16));
+
+        presupuestoLBL.setFont(new Font("Arial", Font.PLAIN, 16));
+        presupuestoLBL.setBackground(new Color(0, 123, 255));
+        presupuestoLBL.setForeground(Color.white);
+        presupuestoLBL.setOpaque(true);
+
+        JPanel spacer = new JPanel();
+        spacer.setBackground(Color.white);
+        spacer.setPreferredSize(new Dimension(650, 50));
+        JPanel spacer2 = new JPanel();
+        spacer2.setBackground(Color.blue);
+        spacer2.setPreferredSize(new Dimension(200, 50));
+
+        panelTop.add(spacer2);
+        panelTop.add(temporadaActualLBL);
+        panelTop.add(temporadaFechasLBL);
+        panelTop.add(spacer);
+        panelTop.add(tuPresupuestoLBL);
+        panelTop.add(presupuestoLBL);
+
+        return panelTop;
+    }
+
+    public static void main(String[] args) {
+        new UserFrame();
+    }
+
+}

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.databind.ser.std.SqlDateSerializer;
+
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
 import src.Modelo.Partidos.Partido;
@@ -45,12 +47,13 @@ public class Administrador extends Usuario {
         return partido;
     }
 
-    public void mostrarLigas(ArrayList<Temporada> temporadas) {
-        for (int i = 0; i < temporadas.size(); i++) {
-            Temporada temporada = temporadas.get(i);
-            System.out.println(temporada.getId() + ": " + temporada.getNombre());
-        }
-    }
+    // TODO: remover este metodo
+    // public void mostrarLigas(ArrayList<Temporada> temporadas) {
+    // for (int i = 0; i < temporadas.size(); i++) {
+    // Temporada temporada = temporadas.get(i);
+    // System.out.println(temporada.getId() + ": " + temporada.getNombre());
+    // }
+    // }
 
     public String posicionJugadorPrompt() {
         System.out.println("Posicion: ");
