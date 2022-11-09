@@ -33,8 +33,13 @@ public class UserFrame extends JFrame {
 
         JLabel imgNameLabel = new JLabel("Nombre de Usuario");
         ImageIcon img = new ImageIcon("Assets/Logo.png");
+        Image image = img.getImage();
+        Image newimg = image.getScaledInstance(200, 130, java.awt.Image.SCALE_SMOOTH);
+        img = new ImageIcon(newimg);
         imgNameLabel.setIcon(img);
+        imgNameLabel.setForeground(Color.white);
         imgNameLabel.setHorizontalTextPosition(JLabel.CENTER);
+        imgNameLabel.setVerticalTextPosition(JLabel.BOTTOM);
 
         panelLeft.add(imgNameLabel);
         return panelLeft;
