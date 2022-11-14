@@ -11,9 +11,9 @@ import src.Vista.App;
 import java.awt.*;
 import java.io.IOException;
 
-public class UserFrame extends JFrame {
+public class Estadisticas extends JFrame {
 
-    public UserFrame() {
+    public Estadisticas() {
 
         super("Fantasy League");
 
@@ -81,7 +81,7 @@ public class UserFrame extends JFrame {
             this.dispose();
             new Estadisticas();
     });
-        
+
         return panelLeft;
     }
 
@@ -91,7 +91,7 @@ public class UserFrame extends JFrame {
         panelTop.setBackground(new Color(255, 255, 255));
         panelTop.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        JLabel temporadaActualLBL = new JLabel("   Temporada Actual ");
+        JLabel temporadaActualLBL = new JLabel("   Estadisticas ");
         JLabel temporadaFechasLBL = new JLabel(temporadaFechas);
 
         JLabel tuPresupuestoLBL = new JLabel("Tu presupuesto: ");
@@ -137,7 +137,7 @@ public class UserFrame extends JFrame {
     
 
     public static void main(String[] args) {
-        new UserFrame();
+        new Estadisticas();
     }
 
 }

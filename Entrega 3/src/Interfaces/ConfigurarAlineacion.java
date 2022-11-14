@@ -11,9 +11,9 @@ import src.Vista.App;
 import java.awt.*;
 import java.io.IOException;
 
-public class UserFrame extends JFrame {
+public class ConfigurarAlineacion extends JFrame {
 
-    public UserFrame() {
+    public ConfigurarAlineacion() {
 
         super("Fantasy League");
 
@@ -65,23 +65,24 @@ public class UserFrame extends JFrame {
         
         
         CrearEquipo.addActionListener(e -> {
-                this.dispose();
-                new CrearEquipo();
-        });
+            this.dispose();
+            new CrearEquipo();
+    });
+    
+    configurarAlineacion.addActionListener(e -> {
+        this.dispose();
+        new ConfigurarAlineacion();
+});
+    comprarJugador.addActionListener(e -> {
+        this.dispose();
+        new comprarJugador();
+});
+    Estadisticas.addActionListener(e -> {
+        this.dispose();
+        new Estadisticas();
+});
         
-        configurarAlineacion.addActionListener(e -> {
-            this.dispose();
-            new ConfigurarAlineacion();
-    });
-        comprarJugador.addActionListener(e -> {
-            this.dispose();
-            new comprarJugador();
-    });
-        Estadisticas.addActionListener(e -> {
-            this.dispose();
-            new Estadisticas();
-    });
-        
+
         return panelLeft;
     }
 
@@ -91,7 +92,7 @@ public class UserFrame extends JFrame {
         panelTop.setBackground(new Color(255, 255, 255));
         panelTop.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        JLabel temporadaActualLBL = new JLabel("   Temporada Actual ");
+        JLabel temporadaActualLBL = new JLabel("   Configurar Aineación ");
         JLabel temporadaFechasLBL = new JLabel(temporadaFechas);
 
         JLabel tuPresupuestoLBL = new JLabel("Tu presupuesto: ");
@@ -137,7 +138,7 @@ public class UserFrame extends JFrame {
     
 
     public static void main(String[] args) {
-        new UserFrame();
+        new ConfigurarAlineacion();
     }
 
 }
