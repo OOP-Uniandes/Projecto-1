@@ -25,10 +25,9 @@ public class Estadisticas extends JFrame {
 
         JPanel panelTop = makePanelTop("17/10/2022", "15000");
         JPanel panelLeft = makePanelLeft();
-        
+
         this.add(panelTop, BorderLayout.NORTH);
         this.add(panelLeft, BorderLayout.WEST);
-        
 
         this.setVisible(true);
 
@@ -46,7 +45,7 @@ public class Estadisticas extends JFrame {
         JButton configurarAlineacion = new JButton("Configurar Alineación");
         JButton comprarJugador = new JButton("Comprar Jugador");
         JButton Estadisticas = new JButton("Estadisticas");
-        
+
         ImageIcon img = new ImageIcon("Assets/Logo.png");
         Image image = img.getImage();
         Image newimg = image.getScaledInstance(200, 130, java.awt.Image.SCALE_SMOOTH);
@@ -55,32 +54,30 @@ public class Estadisticas extends JFrame {
         imgNameLabel.setForeground(Color.white);
         imgNameLabel.setHorizontalTextPosition(JLabel.CENTER);
         imgNameLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        
+
         panelLeft.add(imgNameLabel);
         panelLeft.add(CrearEquipo);
         panelLeft.add(configurarAlineacion);
         panelLeft.add(comprarJugador);
         panelLeft.add(Estadisticas);
-        
-        
-        
+
         CrearEquipo.addActionListener(e -> {
-                this.dispose();
-                new CrearEquipo();
+            this.dispose();
+            new CrearEquipo();
         });
-        
+
         configurarAlineacion.addActionListener(e -> {
             this.dispose();
             new ConfigurarAlineacion();
-    });
+        });
         comprarJugador.addActionListener(e -> {
             this.dispose();
             new comprarJugador();
-    });
+        });
         Estadisticas.addActionListener(e -> {
             this.dispose();
             new Estadisticas();
-    });
+        });
 
         return panelLeft;
     }
@@ -96,8 +93,9 @@ public class Estadisticas extends JFrame {
 
         JLabel tuPresupuestoLBL = new JLabel("Tu presupuesto: ");
         JLabel presupuestoLBL = new JLabel(presupuesto);
-        
-        JLabel AnuncioCrearEquipo = new JLabel("¡Aún no puedes jugar! para empezar a concursar, necesitas crear un equipo");
+
+        JLabel AnuncioCrearEquipo = new JLabel(
+                "¡Aún no puedes jugar! para empezar a concursar, necesitas crear un equipo");
         JButton BotonAnuncioCrearEquipo = new JButton("Crear Equipo");
         temporadaActualLBL.setFont(new Font("Arial", Font.BOLD, 30));
         temporadaActualLBL.setForeground(new Color(0, 123, 255));
@@ -120,8 +118,7 @@ public class Estadisticas extends JFrame {
         JPanel spacer2 = new JPanel();
         spacer2.setBackground(Color.blue);
         spacer2.setPreferredSize(new Dimension(200, 50));
-        
-        
+
         panelTop.add(spacer2);
         panelTop.add(temporadaActualLBL);
         panelTop.add(temporadaFechasLBL);
@@ -132,9 +129,6 @@ public class Estadisticas extends JFrame {
         panelTop.add(BotonAnuncioCrearEquipo);
         return panelTop;
     }
-    
-    
-    
 
     public static void main(String[] args) {
         new Estadisticas();
