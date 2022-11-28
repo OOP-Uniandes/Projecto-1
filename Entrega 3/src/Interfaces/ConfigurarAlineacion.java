@@ -75,7 +75,7 @@ public class ConfigurarAlineacion extends JFrame {
 });
     comprarJugador.addActionListener(e -> {
         this.dispose();
-        new comprarJugador();
+        new ComprarJugadores();
 });
     Estadisticas.addActionListener(e -> {
         this.dispose();
