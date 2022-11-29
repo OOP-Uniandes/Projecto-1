@@ -1,7 +1,13 @@
 package src.Interfaces;
 
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import src.Interfaces.Components.CardJugador;
+import src.Modelo.Jugadores.Jugador;
 import src.Vista.App;
 
 /**
@@ -20,11 +26,49 @@ public class UserFrame extends javax.swing.JFrame {
                 if (App.participanteActual.getEquipo() == null) {
                         presupuestoLabel.setText("No tienes equipo aun... crea uno!");
                 } else {
+
                         presupuestoLabel.setText("Presupuesto: " + App.participanteActual.getEquipo().getPresupuesto()
                                         + " Equipo: " + App.participanteActual.getEquipo().getNombre());
+                                        aniadirJugadoresAlFrame();
                 }
+                
+          
+                
+                
 
                 this.setVisible(true);
+        }
+
+        private void aniadirJugadoresAlFrame(){
+                ArrayList<Jugador> jugadoresEnEquipoFantasia = App.participanteActual.getEquipo().getJugadores();
+                for(int i =0; i< jugadoresEnEquipoFantasia.size(); i++){
+
+
+                        String posicionActual = jugadoresEnEquipoFantasia.get(i).getPosicion();
+                        Jugador jugador = jugadoresEnEquipoFantasia.get(i);
+
+                        if(posicionActual.equals("arquero")){
+          
+                                JPanel panel = new CardJugador(jugador.getNombre(), jugador.getPrecio());
+                                PanelArqueros.add(panel);
+
+                        }else if (posicionActual.equals("defensa")){
+                                
+                                JPanel panel = new CardJugador(jugador.getNombre(), jugador.getPrecio());
+                                PanelDefensores.add(panel);
+
+                        } else if (posicionActual.equals("mediocampista")){
+                                
+                                JPanel panel = new CardJugador(jugador.getNombre(), jugador.getPrecio());
+                                PanelMediocampistas.add(panel);
+
+                        } else if (posicionActual.equals("delantero")){
+                                
+                                JPanel panel = new CardJugador(jugador.getNombre(), jugador.getPrecio());
+                                PanelDelanteros.add(panel);
+
+                        } 
+                }
         }
 
         /**
@@ -95,8 +139,7 @@ public class UserFrame extends javax.swing.JFrame {
                                 crearEquipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE));
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
                 crearEquipoPanelLayout.setVerticalGroup(
                                 crearEquipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(crearEquipoPanelLayout.createSequentialGroup()
@@ -200,13 +243,11 @@ public class UserFrame extends javax.swing.JFrame {
                                                 .addComponent(EstadisticasPanel,
                                                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(cerrarSesionPanel,
                                                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE));
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
                 PanelLeftLayout.setVerticalGroup(
                                 PanelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(PanelLeftLayout.createSequentialGroup()
@@ -268,43 +309,15 @@ public class UserFrame extends javax.swing.JFrame {
                 PanelDefensores.setBackground(new java.awt.Color(255, 255, 255));
                 PanelDefensores.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                javax.swing.GroupLayout PanelDefensoresLayout = new javax.swing.GroupLayout(PanelDefensores);
-                PanelDefensores.setLayout(PanelDefensoresLayout);
-                PanelDefensoresLayout.setHorizontalGroup(
-                                PanelDefensoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 0, Short.MAX_VALUE));
-                PanelDefensoresLayout.setVerticalGroup(
-                                PanelDefensoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 0, Short.MAX_VALUE));
-
                 PanelMediocampistas.setBackground(new java.awt.Color(255, 255, 255));
                 PanelMediocampistas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-                javax.swing.GroupLayout PanelMediocampistasLayout = new javax.swing.GroupLayout(PanelMediocampistas);
-                PanelMediocampistas.setLayout(PanelMediocampistasLayout);
-                PanelMediocampistasLayout.setHorizontalGroup(
-                                PanelMediocampistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 0, Short.MAX_VALUE));
-                PanelMediocampistasLayout.setVerticalGroup(
-                                PanelMediocampistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 114, Short.MAX_VALUE));
 
                 PanelDelanteros.setBackground(new java.awt.Color(255, 255, 255));
                 PanelDelanteros.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                javax.swing.GroupLayout PanelDelanterosLayout = new javax.swing.GroupLayout(PanelDelanteros);
-                PanelDelanteros.setLayout(PanelDelanterosLayout);
-                PanelDelanterosLayout.setHorizontalGroup(
-                                PanelDelanterosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 0, Short.MAX_VALUE));
-                PanelDelanterosLayout.setVerticalGroup(
-                                PanelDelanterosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGap(0, 0, Short.MAX_VALUE));
-
                 PanelAniadirArqueros.setBackground(new java.awt.Color(255, 255, 255));
-                PanelAniadirArqueros
-                                .setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
-                                                new java.awt.Color(0, 102, 102)));
+                PanelAniadirArqueros.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
+                                new java.awt.Color(0, 102, 102)));
 
                 aniadirArquero.setFont(new java.awt.Font("Helvetica Neue", 0, 120)); // NOI18N
                 aniadirArquero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -330,9 +343,8 @@ public class UserFrame extends javax.swing.JFrame {
                                                                 Short.MAX_VALUE));
 
                 PanelAniadirDefensores.setBackground(new java.awt.Color(255, 255, 255));
-                PanelAniadirDefensores
-                                .setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
-                                                new java.awt.Color(0, 102, 102)));
+                PanelAniadirDefensores.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
+                                new java.awt.Color(0, 102, 102)));
 
                 aniadirDefensor.setFont(new java.awt.Font("Helvetica Neue", 0, 120)); // NOI18N
                 aniadirDefensor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -360,9 +372,8 @@ public class UserFrame extends javax.swing.JFrame {
                                                                 101, Short.MAX_VALUE));
 
                 PanelAniadirMediocampistas.setBackground(new java.awt.Color(255, 255, 255));
-                PanelAniadirMediocampistas
-                                .setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
-                                                new java.awt.Color(0, 102, 102)));
+                PanelAniadirMediocampistas.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
+                                new java.awt.Color(0, 102, 102)));
 
                 aniadirMediocampista.setFont(new java.awt.Font("Helvetica Neue", 0, 120)); // NOI18N
                 aniadirMediocampista.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -390,9 +401,8 @@ public class UserFrame extends javax.swing.JFrame {
                                                                 Short.MAX_VALUE));
 
                 PanelAniadirDelanteros.setBackground(new java.awt.Color(255, 255, 255));
-                PanelAniadirDelanteros
-                                .setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
-                                                new java.awt.Color(0, 102, 102)));
+                PanelAniadirDelanteros.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1,
+                                new java.awt.Color(0, 102, 102)));
 
                 aniadirDelantero.setFont(new java.awt.Font("Helvetica Neue", 0, 120)); // NOI18N
                 aniadirDelantero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -423,9 +433,8 @@ public class UserFrame extends javax.swing.JFrame {
                                 PanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(PanelCenterLayout.createSequentialGroup()
                                                                 .addGap(25, 25, 25)
-                                                                .addGroup(PanelCenterLayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(PanelCenterLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(PanelCenterLayout
                                                                                                 .createSequentialGroup()
                                                                                                 .addGroup(PanelCenterLayout
@@ -510,26 +519,23 @@ public class UserFrame extends javax.swing.JFrame {
                                                                 .addComponent(jLabel10)
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(PanelCenterLayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(PanelCenterLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addComponent(PanelAniadirArqueros,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE)
                                                                                 .addComponent(PanelArqueros,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                114,
-                                                                                                Short.MAX_VALUE))
+                                                                                                114, Short.MAX_VALUE))
                                                                 .addGap(0, 0, 0)
                                                                 .addComponent(jLabel12)
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(PanelCenterLayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(PanelCenterLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addComponent(PanelAniadirDefensores,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -542,32 +548,31 @@ public class UserFrame extends javax.swing.JFrame {
                                                                 .addComponent(jLabel11)
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(PanelCenterLayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(PanelCenterLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(PanelCenterLayout
                                                                                                 .createSequentialGroup()
                                                                                                 .addComponent(PanelAniadirMediocampistas,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addGap(0, 7, Short.MAX_VALUE))
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                PanelCenterLayout
-                                                                                                                .createSequentialGroup()
-                                                                                                                .addComponent(PanelMediocampistas,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addPreferredGap(
-                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                                                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                                                .addGroup(PanelCenterLayout
+                                                                                                .createSequentialGroup()
+                                                                                                .addComponent(PanelMediocampistas,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                117,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                .addPreferredGap(
+                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                Short.MAX_VALUE)))
                                                                 .addComponent(jLabel13)
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(PanelCenterLayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(PanelCenterLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addComponent(PanelAniadirDelanteros,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -581,7 +586,7 @@ public class UserFrame extends javax.swing.JFrame {
                 getContentPane().add(PanelCenter, java.awt.BorderLayout.CENTER);
 
                 pack();
-        }// </editor-fold>
+        }
 
         private void aniadirArqueroMouseClicked(java.awt.event.MouseEvent evt) {
                 this.dispose();
@@ -634,7 +639,8 @@ public class UserFrame extends javax.swing.JFrame {
         }
 
         private void ConfigurarAlineacionPanelMouseClicked(java.awt.event.MouseEvent evt) {
-                // TODO add your handling code here:
+                this.dispose();
+                new ConfigurarAlineacion();
         }
 
         private void EstadisticasPanelMouseClicked(java.awt.event.MouseEvent evt) {

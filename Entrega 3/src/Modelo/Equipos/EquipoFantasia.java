@@ -151,4 +151,56 @@ public class EquipoFantasia extends Equipo {
     public void setJugadores(ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
+
+    public ArrayList<Jugador> getArqueros(){
+
+        ArrayList<Jugador> arqueros = new ArrayList<Jugador>();
+
+        for (int i = 0; i < this.jugadores.size(); i++){
+            if(this.jugadores.get(i).getPosicion().equals("arquero")){
+                arqueros.add(this.jugadores.get(i));
+            }
+        }
+
+        return arqueros;
+    }
+
+    public ArrayList<Jugador> getDefensas() {
+
+        ArrayList<Jugador> defensas = new ArrayList<Jugador>();
+
+        for (int i = 0; i < this.jugadores.size(); i++) {
+            if (this.jugadores.get(i).getPosicion().equals("defensa")) {
+                defensas.add(this.jugadores.get(i));
+            }
+        }
+
+        return defensas;
+    }
+
+    public ArrayList<Jugador> getMediocampistas() {
+
+        ArrayList<Jugador> mediocampistas = new ArrayList<Jugador>();
+
+        for (int i = 0; i < this.jugadores.size(); i++) {
+            if (this.jugadores.get(i).getPosicion().equals("mediocampista")) {
+                mediocampistas.add(this.jugadores.get(i));
+            }
+        }
+
+        return mediocampistas;
+    }
+
+    public ArrayList<Jugador> getDelanteros() {
+
+        ArrayList<Jugador> delanteros = new ArrayList<Jugador>();
+
+        for (int i = 0; i < this.jugadores.size(); i++) {
+            if (this.jugadores.get(i).getPosicion().equals("delantero")) {
+                delanteros.add(this.jugadores.get(i));
+            }
+        }
+
+        return delanteros;
+    }
 }

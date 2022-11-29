@@ -2,6 +2,7 @@ package src.Interfaces;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -62,11 +63,9 @@ public class ComprarJugadores extends javax.swing.JFrame {
 
                 PosicionJugador.setText(posicionJugador);
 
-                this.setVisible(true);
-        }
+                presupuestoLbl.setText("Presupuesto: " + App.participanteActual.getEquipo().getPresupuesto());
 
-        private String getElementAt(int i) {
-                return stringsForJList[i];
+                this.setVisible(true);
         }
 
         /**
@@ -366,14 +365,45 @@ public class ComprarJugadores extends javax.swing.JFrame {
         }// </editor-fold>
 
         private void ComprarJugadorBtnActionPerformed(java.awt.event.ActionEvent evt) {
-                // codigo para comprar jugador
-                Jugador jugadorAComprar = App.getJugadorPorNombre(jListJugadores.getSelectedValue());
-                App.participanteActual.getEquipo().setPresupuesto(
-                                App.participanteActual.getEquipo().getPresupuesto() - jugadorAComprar.getPrecio());
+                // TODO: verificar cantidad maxima de jugadores de cada tipo
 
-                ArrayList<Jugador> jugadores = App.participanteActual.getEquipo().getJugadores();
-                jugadores.add(jugadorAComprar);
-                App.participanteActual.getEquipo().setJugadores(jugadores);
+
+                // sacar jugador
+                Jugador jugadorAComprar = App.getJugadorPorNombre(jListJugadores.getSelectedValue());
+
+                // verificar que el jugador no este ya en el equipo
+                ArrayList<Jugador> jugadoresEnEquipoFantasia = App.participanteActual.getEquipo().getJugadores();
+
+                if(jugadoresEnEquipoFantasia.contains(jugadorAComprar)){
+                        JOptionPane.showMessageDialog(null,"Ya tienes este jugador en tu equipo !");
+                }else{
+                        // verificar que el presupuesto sea suficiente para comprar el jugador
+                        double nuevoPresupuesto = App.participanteActual.getEquipo().getPresupuesto()
+                                        - jugadorAComprar.getPrecio();
+
+                        if (nuevoPresupuesto <= 0) {
+                                JOptionPane.showMessageDialog(null,
+                                                "No tienes suficiente dinero para anadir este jugador a tu equipo");
+                        } else {
+                                // actualizar presupuesto
+                                App.participanteActual.getEquipo().setPresupuesto(nuevoPresupuesto);
+                                // actualizar label presupuesto
+                                presupuestoLbl.setText(
+                                                "Presupuesto: " + App.participanteActual.getEquipo().getPresupuesto());
+
+                                // anadir jugador a equipo fantasia
+                                ArrayList<Jugador> jugadores = App.participanteActual.getEquipo().getJugadores();
+                                jugadores.add(jugadorAComprar);
+                                App.participanteActual.getEquipo().setJugadores(jugadores);
+
+                                // decirle al usuario que el jugador se ha anadido
+                                JOptionPane.showMessageDialog(null, "jugador se ha anadido a tu equipo de fantasia");
+                        }
+                }
+ 
+               
+
+                
 
         }
 

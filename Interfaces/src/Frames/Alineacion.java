@@ -474,6 +474,7 @@ public class Alineacion extends javax.swing.JFrame {
         getContentPane().add(jPanel11);
         jPanel11.setBounds(346, 286, 161, 112);
 
+        guardarYsalirBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guardarYsalirBtn.setText("Guardar y Salir");
         guardarYsalirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,7 +482,7 @@ public class Alineacion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(guardarYsalirBtn);
-        guardarYsalirBtn.setBounds(830, 410, 160, 120);
+        guardarYsalirBtn.setBounds(690, 400, 160, 120);
 
         jLabel12.setFont(new java.awt.Font("Poiret One", 1, 48)); // NOI18N
         jLabel12.setText("Configurar alineacion");

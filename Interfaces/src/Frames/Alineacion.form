@@ -792,6 +792,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="guardarYsalirBtn">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Guardar y Salir"/>
       </Properties>
       <Events>
@@ -799,7 +802,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="830" y="410" width="160" height="120"/>
+          <AbsoluteConstraints x="690" y="400" width="160" height="120"/>
         </Constraint>
       </Constraints>
     </Component>

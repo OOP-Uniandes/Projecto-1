@@ -236,44 +236,11 @@ public class UserFrame extends javax.swing.JFrame {
         PanelDefensores.setBackground(new java.awt.Color(255, 255, 255));
         PanelDefensores.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout PanelDefensoresLayout = new javax.swing.GroupLayout(PanelDefensores);
-        PanelDefensores.setLayout(PanelDefensoresLayout);
-        PanelDefensoresLayout.setHorizontalGroup(
-            PanelDefensoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        PanelDefensoresLayout.setVerticalGroup(
-            PanelDefensoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         PanelMediocampistas.setBackground(new java.awt.Color(255, 255, 255));
         PanelMediocampistas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout PanelMediocampistasLayout = new javax.swing.GroupLayout(PanelMediocampistas);
-        PanelMediocampistas.setLayout(PanelMediocampistasLayout);
-        PanelMediocampistasLayout.setHorizontalGroup(
-            PanelMediocampistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        PanelMediocampistasLayout.setVerticalGroup(
-            PanelMediocampistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
-        );
-
         PanelDelanteros.setBackground(new java.awt.Color(255, 255, 255));
         PanelDelanteros.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout PanelDelanterosLayout = new javax.swing.GroupLayout(PanelDelanteros);
-        PanelDelanteros.setLayout(PanelDelanterosLayout);
-        PanelDelanterosLayout.setHorizontalGroup(
-            PanelDelanterosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        PanelDelanterosLayout.setVerticalGroup(
-            PanelDelanterosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         PanelAniadirArqueros.setBackground(new java.awt.Color(255, 255, 255));
         PanelAniadirArqueros.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 12, 1, new java.awt.Color(0, 102, 102)));
@@ -430,10 +397,10 @@ public class UserFrame extends javax.swing.JFrame {
                 .addGroup(PanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelCenterLayout.createSequentialGroup()
                         .addComponent(PanelAniadirMediocampistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 7, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCenterLayout.createSequentialGroup()
-                        .addComponent(PanelMediocampistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(PanelCenterLayout.createSequentialGroup()
+                        .addComponent(PanelMediocampistas, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
