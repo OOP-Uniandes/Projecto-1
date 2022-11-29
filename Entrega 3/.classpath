@@ -10,5 +10,8 @@
 	<classpathentry kind="lib" path="Lib/jackson-annotations-2.14.0-rc2.jar"/>
 	<classpathentry kind="lib" path="Lib/jackson-core-2.14.0-rc2.jar"/>
 	<classpathentry kind="lib" path="Lib/jackson-databind-2.14.0-rc2.jar"/>
+	<classpathentry kind="lib" path="Lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="Lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="Lib/RSTableMetro.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
