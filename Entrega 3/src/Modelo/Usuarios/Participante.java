@@ -2,7 +2,6 @@ package src.Modelo.Usuarios;
 
 import java.util.ArrayList;
 
-import src.Modelo.Equipos.Equipo;
 import src.Modelo.Equipos.EquipoFantasia;
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
@@ -10,7 +9,7 @@ import src.Modelo.Temporadas.Temporada;
 
 public class Participante extends Usuario {
 
-    EquipoFantasia equipos = null;
+    EquipoFantasia equipo = null;
 
     public Participante(String nombre, String contraseña, String rol) {
         super(nombre, contraseña, "Participante");
@@ -33,11 +32,11 @@ public class Participante extends Usuario {
     }
 
     public EquipoFantasia getEquipo() {
-        return this.equipos;
+        return this.equipo;
     }
 
-    public void setEquipo(EquipoFantasia equipos) {
-        this.equipos = equipos;
+    public void setEquipo(EquipoFantasia equipo) {
+        this.equipo = equipo;
     }
 
     public ArrayList<Jugador> mostrarJugadoresTemporada(Temporada temporada) {

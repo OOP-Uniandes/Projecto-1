@@ -227,7 +227,7 @@ public class ComprarJugadores extends javax.swing.JFrame {
                 .addGroup(PanelJugadorComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(CostoJugador))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
             .addGroup(PanelJugadorComprarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelJugadorComprarLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -265,7 +265,7 @@ public class ComprarJugadores extends javax.swing.JFrame {
                     .addComponent(ComprarJugadorBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelCenterLayout.setVerticalGroup(
             PanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

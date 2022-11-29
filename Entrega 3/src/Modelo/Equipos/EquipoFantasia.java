@@ -22,7 +22,7 @@ public class EquipoFantasia extends Equipo {
     int AlineacionDelanteros = 0;
     String DueñoActual;
     double presupuesto;
-
+    ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
     ArrayList<Jugador> alineacion = new ArrayList<Jugador>();
     Jugador capitan = null;
 
@@ -142,5 +142,13 @@ public class EquipoFantasia extends Equipo {
 
     public void setDueñoActual(String dueñoActual) {
         DueñoActual = dueñoActual;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(ArrayList<Jugador> jugadores) {
+        this.jugadores = jugadores;
     }
 }

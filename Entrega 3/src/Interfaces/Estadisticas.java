@@ -72,7 +72,7 @@ public class Estadisticas extends JFrame {
         });
         comprarJugador.addActionListener(e -> {
             this.dispose();
-            new ComprarJugadores();
+            // new ComprarJugadores();
         });
         Estadisticas.addActionListener(e -> {
             this.dispose();

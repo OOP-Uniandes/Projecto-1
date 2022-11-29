@@ -14,6 +14,7 @@ import src.Modelo.Jugadores.Jugador;
 import src.Modelo.Partidos.Partido;
 import src.Modelo.Temporadas.Ranking;
 import src.Modelo.Temporadas.Temporada;
+import src.Vista.App;
 
 public class Archivo {
 
@@ -55,7 +56,6 @@ public class Archivo {
         temporada.setRankingActual(rankings);
         temporada.setEquipos(equipos);
         temporada.setPartidos(partidos);
-        temporada.setPresupuesto();
 
         return temporada;
     }
@@ -141,6 +141,17 @@ public class Archivo {
             double precio = jsonJugadores.getJSONObject(i).getDouble("precio");
 
             Jugador objetoJugador = new Jugador(idActual, nombre, posicion, precio);
+
+            // aniadir objetojuagdor a la lista de jugadores
+            if (objetoJugador.getPosicion().equals("arquero")) {
+                App.arqueros.add(objetoJugador);
+            } else if (objetoJugador.getPosicion().equals("defensa")) {
+                App.defensores.add(objetoJugador);
+            } else if (objetoJugador.getPosicion().equals("mediocampista")) {
+                App.mediocampistas.add(objetoJugador);
+            } else if (objetoJugador.getPosicion().equals("delantero")) {
+                App.delanteros.add(objetoJugador);
+            }
 
             jugadores.add(objetoJugador);
         }

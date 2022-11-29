@@ -80,7 +80,7 @@ public class Temporada {
         this.nombre = nombre;
     }
 
-    public void setPresupuesto() {
+    public void setPresupuesto(double d) {
         this.presupuesto = 0;
 
     }
