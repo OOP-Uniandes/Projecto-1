@@ -589,8 +589,9 @@ public class UserFrame extends javax.swing.JFrame {
         }
 
         private void aniadirArqueroMouseClicked(java.awt.event.MouseEvent evt) {
-                this.dispose();
+                
                 if (App.participanteActual.getEquipo() != null) {
+                        this.dispose();
                         new ComprarJugadores("arquero");
                 } else {
                         JOptionPane.showMessageDialog(null, "No tienes equipo");
@@ -598,8 +599,9 @@ public class UserFrame extends javax.swing.JFrame {
         }
 
         private void aniadirDefensorMouseClicked(java.awt.event.MouseEvent evt) {
-                this.dispose();
+                
                 if (App.participanteActual.getEquipo() != null) {
+                        this.dispose();
                         new ComprarJugadores("defensa");
                 } else {
                         JOptionPane.showMessageDialog(null, "No tienes equipo");
@@ -608,8 +610,9 @@ public class UserFrame extends javax.swing.JFrame {
         }
 
         private void aniadirMediocampistaMouseClicked(java.awt.event.MouseEvent evt) {
-                this.dispose();
+                
                 if (App.participanteActual.getEquipo() != null) {
+                        this.dispose();
                         new ComprarJugadores("mediocampista");
                 } else {
                         JOptionPane.showMessageDialog(null, "No tienes equipo");
@@ -618,8 +621,9 @@ public class UserFrame extends javax.swing.JFrame {
         }
 
         private void aniadirDelanteroMouseClicked(java.awt.event.MouseEvent evt) {
-                this.dispose();
+                
                 if (App.participanteActual.getEquipo() != null) {
+                        this.dispose();
                         new ComprarJugadores("delantero");
                 } else {
                         JOptionPane.showMessageDialog(null, "No tienes equipo");
@@ -639,8 +643,10 @@ public class UserFrame extends javax.swing.JFrame {
         }
 
         private void ConfigurarAlineacionPanelMouseClicked(java.awt.event.MouseEvent evt) {
-                this.dispose();
-                new ConfigurarAlineacion();
+                if (App.participanteActual.getEquipo() != null) {
+                        this.dispose();
+                        new ConfigurarAlineacion();
+                }
         }
 
         private void EstadisticasPanelMouseClicked(java.awt.event.MouseEvent evt) {

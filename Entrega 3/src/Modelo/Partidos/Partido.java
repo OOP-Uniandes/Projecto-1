@@ -1,6 +1,5 @@
 package src.Modelo.Partidos;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import src.Modelo.Equipos.EquipoReal;

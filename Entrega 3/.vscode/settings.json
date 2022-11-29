@@ -2,5 +2,15 @@
     "files.exclude": {
         "**/*.class": true,
         "**/*.gitignore": true,
-    }
+    },
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Lib/jackson-annotations-2.14.0-rc2.jar",
+        "Lib/jackson-core-2.14.0-rc2.jar",
+        "Lib/jackson-databind-2.14.0-rc2.jar",
+        "Lib/jcommon-1.0.23.jar",
+        "Lib/jfreechart-1.0.19.jar",
+        "Lib/json-20220924.jar",
+        "Lib/RSTableMetro.jar"
+    ]
 }

@@ -2,17 +2,10 @@ package src.Vista;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import src.Interfaces.Login;
-import src.Modelo.Equipos.Equipo;
-import src.Modelo.Equipos.EquipoFantasia;
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
-import src.Modelo.Partidos.Partido;
 import src.Modelo.Temporadas.Temporada;
 import src.Modelo.Usuarios.Administrador;
 import src.Modelo.Usuarios.Participante;

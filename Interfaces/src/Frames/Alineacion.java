@@ -61,6 +61,7 @@ public class Alineacion extends javax.swing.JFrame {
         arqueroCombo = new javax.swing.JComboBox<>();
         guardarYsalirBtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1334, 806));
@@ -482,12 +483,22 @@ public class Alineacion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(guardarYsalirBtn);
-        guardarYsalirBtn.setBounds(690, 400, 160, 120);
+        guardarYsalirBtn.setBounds(670, 390, 160, 120);
 
         jLabel12.setFont(new java.awt.Font("Poiret One", 1, 48)); // NOI18N
         jLabel12.setText("Configurar alineacion");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(100, 450, 472, 57);
+        jLabel12.setBounds(80, 440, 472, 57);
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setText("Salir sin guardar !");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(250, 500, 180, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -540,6 +551,10 @@ public class Alineacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_guardarYsalirBtnActionPerformed
 
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel13MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -588,6 +603,7 @@ public class Alineacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

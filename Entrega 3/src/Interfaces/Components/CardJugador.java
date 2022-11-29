@@ -1,12 +1,26 @@
 package src.Interfaces.Components;
 
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+import src.Interfaces.UserFrame;
+import src.Modelo.Equipos.EquipoFantasia;
+import src.Modelo.Jugadores.Jugador;
+import src.Vista.App;
+
 public class CardJugador extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelVistaJugador
      */
+    String nombreJugador;
+    double precioJugadorDouble;
+
+
     public CardJugador(String nombreJugador, double precioJugadorDouble) {
-        
+        this.nombreJugador = nombreJugador;
+        this.precioJugadorDouble = precioJugadorDouble;
         initComponents();
         NombreJugador.setText(nombreJugador);
         CostoJugador.setText(" " + precioJugadorDouble);
@@ -69,7 +83,52 @@ public class CardJugador extends javax.swing.JPanel {
     }// </editor-fold>
 
     private void venderBtnMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+        // TODO: aniadir codigo para vender un jugador :)
+        Jugador jugadorAVender = App.getJugadorPorNombre(this.nombreJugador);
+
+        // sacar equipo usuario
+        EquipoFantasia equipoUsuario = App.participanteActual.getEquipo();
+
+        // Aniadir presupuesto a jugador
+        double precioVenta = this.precioJugadorDouble * 0.97;
+        double presupuestoActual = App.participanteActual.getEquipo().getPresupuesto();
+        App.participanteActual.getEquipo().setPresupuesto(presupuestoActual + precioVenta);
+
+        // Sacar jugador de equipo fantasia 
+        ArrayList<Jugador> jugadoresEquipo = App.participanteActual.getEquipo().getJugadores();
+        jugadoresEquipo.remove(jugadorAVender);
+        App.participanteActual.getEquipo().setJugadores(jugadoresEquipo);
+        
+        // sacar de alineacion 
+        ArrayList<Jugador> alineacion = App.participanteActual.getEquipo().getAlineacion();
+        if(alineacion.contains(jugadorAVender)){
+                alineacion.remove(jugadorAVender);
+                App.participanteActual.getEquipo().setAlineacion(alineacion);
+        }
+
+        //actualizar numero de jugadores en esa posicion para el equipo de fantasia
+        if (jugadorAVender.getPosicion().equals("arquero")) {
+                
+                        equipoUsuario.setCantArqueros(equipoUsuario.getCantArqueros() - 1);
+                
+        } else if (jugadorAVender.getPosicion().equals("defensa")) {
+                
+                        equipoUsuario.setCantDefensores(equipoUsuario.getCantDefensores() - 1);
+                
+        } else if (jugadorAVender.getPosicion().equals("mediocampista")) {
+                
+                        equipoUsuario.setCantMediocampistas(equipoUsuario.getCantMediocampistas() - 1);
+                
+        } else if (jugadorAVender.getPosicion().equals("delantero")) {
+                
+                        equipoUsuario.setCantDelanteros(equipoUsuario.getCantDelanteros() - 1);
+                
+        }
+
+        // reiniciar el frame parent para ver los cambios relflejados
+        JFrame parent = (JFrame) this.getTopLevelAncestor();
+        parent.dispose();
+        new UserFrame();
     }
 
     // Variables declaration - do not modify

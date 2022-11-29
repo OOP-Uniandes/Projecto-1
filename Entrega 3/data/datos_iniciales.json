@@ -27,9 +27,34 @@
                 "id": 1,
                 "nombre": "FC-BARCELONA",
                 "jugadores": [
+                    
                     {
                         "id": 1,
-                        "nombre": "Pedri",
+                        "nombre": "Pedriasdasd",
+                        "posicion": "mediocampista",
+                        "precio": 1200
+                    },
+                    {
+                        "id": 1,
+                        "nombre": "Pedrai",
+                        "posicion": "mediocampista",
+                        "precio": 1200
+                    },
+                    {
+                        "id": 1,
+                        "nombre": "P12edri",
+                        "posicion": "mediocampista",
+                        "precio": 1200
+                    },
+                    {
+                        "id": 1,
+                        "nombre": "Medri",
+                        "posicion": "mediocampista",
+                        "precio": 1200
+                    },
+                    {
+                        "id": 1,
+                        "nombre": "Cedri",
                         "posicion": "mediocampista",
                         "precio": 1200
                     },
@@ -47,7 +72,19 @@
                     },
                     {
                         "id": 4,
-                        "nombre": "Eric",
+                        "nombre": "Erica",
+                        "posicion": "defensa",
+                        "precio": 1200
+                    },
+                    {
+                        "id": 4,
+                        "nombre": "Erico",
+                        "posicion": "defensa",
+                        "precio": 1200
+                    },
+                    {
+                        "id": 4,
+                        "nombre": "Ericu",
                         "posicion": "defensa",
                         "precio": 1200
                     },
@@ -72,6 +109,12 @@
                     {
                         "id": 2,
                         "nombre": "Benzema",
+                        "posicion": "delantero",
+                        "precio": 1200
+                    },
+                    {
+                        "id": 2,
+                        "nombre": "Benzemaaaaa",
                         "posicion": "delantero",
                         "precio": 1200
                     },
