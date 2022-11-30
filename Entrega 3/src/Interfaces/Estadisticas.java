@@ -1,9 +1,24 @@
 package src.Interfaces;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
+
+import src.Modelo.Jugadores.Jugador;
+import src.Vista.App;
+
+import java.awt.*;
 
 /**
  *
@@ -16,6 +31,54 @@ public class Estadisticas extends javax.swing.JFrame {
      */
     public Estadisticas() {
         initComponents();
+
+        DefaultTableModel model;
+        ArrayList<Jugador> equipo = App.participanteActual.getEquipo().getAlineacion();
+
+        numJugadoresEnEquipo.setText(String.valueOf(App.participanteActual.getEquipo().getJugadores().size()));
+        numPuntosAcomulados.setText("0");
+        numRankingEquipo.setText("0");
+
+        for(int i = 0; i < equipo.size(); i++){
+            Jugador jugador = equipo.get(i);
+            Object[] obj = {jugador.getNombre(), App.getEquipoPorJugador(jugador.getNombre()).getNombre(), jugador.getPosicion(), "0"};
+            model = (DefaultTableModel) tablaAlineacion.getModel();
+            model.addRow(obj);
+        }
+
+        showPieChart();
+
+        this.setVisible(true);
+        
+    }
+
+    public void showPieChart() {
+
+        // create dataset
+        DefaultPieDataset barDataset = new DefaultPieDataset();
+        barDataset.setValue("IPhone 5s", new Double(20));
+        barDataset.setValue("SamSung Grand", new Double(20));
+        barDataset.setValue("MotoG", new Double(40));
+        barDataset.setValue("Nokia Lumia", new Double(10));
+
+        // create chart
+        JFreeChart piechart = ChartFactory.createPieChart("mobile sales", barDataset, false, true, false);// explain
+
+        PiePlot piePlot = (PiePlot) piechart.getPlot();
+
+        // changing pie chart blocks colors
+        piePlot.setSectionPaint("IPhone 5s", new Color(255, 255, 102));
+        piePlot.setSectionPaint("SamSung Grand", new Color(102, 255, 102));
+        piePlot.setSectionPaint("MotoG", new Color(255, 102, 153));
+        piePlot.setSectionPaint("Nokia Lumia", new Color(0, 204, 204));
+
+        piePlot.setBackgroundPaint(Color.white);
+
+        // create chartPanel to display chart(graph)
+        ChartPanel barChartPanel = new ChartPanel(piechart);
+        panelPieChart.removeAll();
+        panelPieChart.add(barChartPanel, BorderLayout.CENTER);
+        panelPieChart.validate();
     }
 
     /**
@@ -49,9 +112,10 @@ public class Estadisticas extends javax.swing.JFrame {
         panelPieChart = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1334, 810));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -64,12 +128,15 @@ public class Estadisticas extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Estadisticas de tu equipo en la temporada actual !");
 
         exitLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        exitLabel.setForeground(new java.awt.Color(255, 255, 255));
         exitLabel.setText("X");
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,7 +169,7 @@ public class Estadisticas extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -115,13 +182,15 @@ public class Estadisticas extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.LINE_END);
 
-        panelCentro.setBackground(new java.awt.Color(204, 255, 204));
+        panelCentro.setBackground(new java.awt.Color(255, 255, 255));
+        panelCentro
+                .setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 10, 0, new java.awt.Color(0, 102, 102)));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Puntos por jugador ");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 10, 0, new java.awt.Color(0, 0, 0)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 10, 1, new java.awt.Color(0, 0, 0)));
 
         numJugadoresEnEquipo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         numJugadoresEnEquipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -143,7 +212,7 @@ public class Estadisticas extends javax.swing.JFrame {
         jLabel3.setText("No. Puntos Acomulados");
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 10, 0, new java.awt.Color(0, 0, 0)));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 10, 1, new java.awt.Color(0, 0, 0)));
 
         numPuntosAcomulados.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         numPuntosAcomulados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -163,7 +232,7 @@ public class Estadisticas extends javax.swing.JFrame {
         jLabel4.setText("Ranking de tu equipo");
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 10, 0, new java.awt.Color(0, 0, 0)));
+        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 10, 1, new java.awt.Color(0, 0, 0)));
 
         numRankingEquipo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         numRankingEquipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -184,29 +253,27 @@ public class Estadisticas extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("No. Jugadores en tu equipo");
 
+        tablaAlineacion
+                .setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 10, 1, new java.awt.Color(0, 0, 0)));
         tablaAlineacion.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
+
                 },
                 new String[] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
+                        "Nombre", "Equipo", "Posicion", "Puntos"
                 }));
+        tablaAlineacion.setColorBackgoundHead(new java.awt.Color(255, 255, 255));
+        tablaAlineacion.setColorForegroundHead(new java.awt.Color(0, 0, 0));
+        tablaAlineacion.setColorSelForeground(new java.awt.Color(0, 0, 0));
+        tablaAlineacion.setRowHeight(40);
+        tablaAlineacion.setRowMargin(2);
         jScrollPane1.setViewportView(tablaAlineacion);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Tu alineacion actual !");
 
-        javax.swing.GroupLayout panelPieChartLayout = new javax.swing.GroupLayout(panelPieChart);
-        panelPieChart.setLayout(panelPieChartLayout);
-        panelPieChartLayout.setHorizontalGroup(
-                panelPieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 372, Short.MAX_VALUE));
-        panelPieChartLayout.setVerticalGroup(
-                panelPieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE));
+        panelPieChart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelPieChart.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout panelCentroLayout = new javax.swing.GroupLayout(panelCentro);
         panelCentro.setLayout(panelCentroLayout);
@@ -237,17 +304,16 @@ public class Estadisticas extends javax.swing.JFrame {
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(39, 39, 39))
                                         .addGroup(panelCentroLayout.createSequentialGroup()
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 435,
+                                                        Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(
                                         panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 197,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(panelPieChart, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(39, Short.MAX_VALUE)));
+                                                        331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(36, Short.MAX_VALUE)));
         panelCentroLayout.setVerticalGroup(
                 panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelCentroLayout.createSequentialGroup()
@@ -282,14 +348,12 @@ public class Estadisticas extends javax.swing.JFrame {
                                                         .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
                                                                 false)
                                                         .addComponent(panelPieChart,
-                                                                javax.swing.GroupLayout.Alignment.TRAILING,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(jScrollPane1,
-                                                                javax.swing.GroupLayout.Alignment.TRAILING,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE, 369,
                                                                 Short.MAX_VALUE))))
-                                .addContainerGap(123, Short.MAX_VALUE)));
+                                .addContainerGap(110, Short.MAX_VALUE)));
 
         getContentPane().add(panelCentro, java.awt.BorderLayout.CENTER);
 
@@ -297,7 +361,8 @@ public class Estadisticas extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        new UserFrame();
     }
 
     /**

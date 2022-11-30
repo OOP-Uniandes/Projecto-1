@@ -85,6 +85,8 @@ public class Login extends JFrame {
                         App.usuarioActual.rol);
 
                 // ir a frame participante
+                
+
                 this.dispose();
                 new UserFrame();
             }

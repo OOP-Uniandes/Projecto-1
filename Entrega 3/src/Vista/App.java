@@ -29,6 +29,7 @@ public class App {
 			Archivo reader = new Archivo();
 			temporada = reader.cargarTemporadas("data/datos_iniciales.json");
 			new Login();
+			
 
 		}
 	}
@@ -70,4 +71,4 @@ public class App {
 		return null;
 	}
 
-}
+	}

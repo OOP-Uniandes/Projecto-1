@@ -11,6 +11,15 @@ import javax.swing.JOptionPane;
 public class Usuario {
 
 	public String nombre;
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public String contraseña;
 	public String rol;
 
@@ -19,6 +28,10 @@ public class Usuario {
 		this.nombre = nombre;
 		this.contraseña = contraseña;
 		this.rol = rol;
+	}
+
+	public Usuario(){
+		 super();
 	}
 
 	public void cambiarContraseña(String nuevaContraseña) {

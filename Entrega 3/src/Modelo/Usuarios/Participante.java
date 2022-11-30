@@ -2,18 +2,20 @@ package src.Modelo.Usuarios;
 
 import java.util.ArrayList;
 
+
 import src.Modelo.Equipos.EquipoFantasia;
 import src.Modelo.Equipos.EquipoReal;
 import src.Modelo.Jugadores.Jugador;
 import src.Modelo.Temporadas.Temporada;
 
-public class Participante extends Usuario {
+public class Participante extends Usuario{
 
     EquipoFantasia equipo = null;
 
     public Participante(String nombre, String contraseña, String rol) {
         super(nombre, contraseña, "Participante");
     }
+
 
     public EquipoFantasia crearEquipo(String nombre, int id, int puntajeActual, double presupuesto) {
         EquipoFantasia equipo = new EquipoFantasia(nombre, id, puntajeActual, presupuesto);

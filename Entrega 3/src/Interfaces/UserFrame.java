@@ -1,13 +1,23 @@
 package src.Interfaces;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import src.Interfaces.Components.CardJugador;
 import src.Modelo.Jugadores.Jugador;
+import src.Modelo.Usuarios.Participante;
 import src.Vista.App;
 
 /**
@@ -21,7 +31,17 @@ public class UserFrame extends javax.swing.JFrame {
          */
 
         public UserFrame() {
+                
+                try{
+                        ObjectMapper mapper = new ObjectMapper();
+                File file = new File("data/m.json");
 
+                        App.participanteActual = mapper.readValue(file, Participante.class);
+                        
+                }catch (IOException e) {
+                        e.printStackTrace();
+                }
+                
                 initComponents();
                 if (App.participanteActual.getEquipo() == null) {
                         presupuestoLabel.setText("No tienes equipo aun... crea uno!");
@@ -203,7 +223,12 @@ public class UserFrame extends javax.swing.JFrame {
                 cerrarSesionPanel.setBackground(new java.awt.Color(0, 102, 102));
                 cerrarSesionPanel.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                cerrarSesionPanelMouseClicked(evt);
+                                try {
+                                        cerrarSesionPanelMouseClicked(evt);
+                                } catch (JsonProcessingException e) {
+                                        // TODO Auto-generated catch block
+                                        e.printStackTrace();
+                                }
                         }
                 });
 
@@ -646,15 +671,32 @@ public class UserFrame extends javax.swing.JFrame {
                 if (App.participanteActual.getEquipo() != null) {
                         this.dispose();
                         new ConfigurarAlineacion();
+                }else{
+                        JOptionPane.showMessageDialog(null, "No tienes equipo");
                 }
         }
 
         private void EstadisticasPanelMouseClicked(java.awt.event.MouseEvent evt) {
-                // TODO add your handling code here:
+                if (App.participanteActual.getEquipo() != null) {
+                        this.dispose();
+                        new Estadisticas();
+                } else {
+                        JOptionPane.showMessageDialog(null, "No tienes equipo");
+                }
         }
 
-        private void cerrarSesionPanelMouseClicked(java.awt.event.MouseEvent evt) {
-                // TODO add your handling code here:
+        private void cerrarSesionPanelMouseClicked(java.awt.event.MouseEvent evt) throws JsonProcessingException {
+                // codigo para guardar los datos del usuario:
+                ObjectMapper mapper = new ObjectMapper();
+
+                File file = new File("data/"+App.participanteActual.getNombre() + ".json");
+
+                try {
+                        // Serialize Java object info JSON file.
+                        mapper.writeValue(file, App.participanteActual);
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
         }
 
         /**
